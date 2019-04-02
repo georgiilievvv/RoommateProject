@@ -1,5 +1,7 @@
 package softuni.project.web.controllers;
 
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -9,11 +11,25 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import softuni.project.domain.models.binding.UserRegisterBindingModel;
+import softuni.project.domain.models.service.CityServiceModel;
+import softuni.project.domain.models.view.CityViewModel;
+import softuni.project.service.CityService;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class HomeController {
+
+    private final ModelMapper modelMapper;
+    private final CityService cityService;
+
+    @Autowired
+    public HomeController(ModelMapper modelMapper, CityService cityService) {
+        this.modelMapper = modelMapper;
+        this.cityService = cityService;
+    }
 
     @PostMapping("/register")
     @PreAuthorize("isAnonymous()")
@@ -39,8 +55,13 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public ModelAndView index(ModelAndView modelAndView){
+    public ModelAndView index(ModelAndView modelAndView, @ModelAttribute UserRegisterBindingModel bindingModel){
+        List<String> cities = cityService.findAllCities().stream()
+                .map(CityServiceModel::getName)
+                .collect(Collectors.toList());
 
+        modelAndView.addObject("bindingModel", bindingModel);
+        modelAndView.addObject("cityModels", cities);
         modelAndView.setViewName("index");
 
         return modelAndView;

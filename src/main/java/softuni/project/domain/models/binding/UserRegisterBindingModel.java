@@ -13,7 +13,7 @@ public class UserRegisterBindingModel {
     private String confirmPassword;
     private String phoneNumber;
     private Integer age;
-    private Gender gender;
+    private String gender;
     private String city;
     private boolean isAccountNonExpired;
     private boolean isAccountNonLocked;
@@ -80,11 +80,11 @@ public class UserRegisterBindingModel {
         this.age = age;
     }
 
-    public Gender getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(Gender gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 

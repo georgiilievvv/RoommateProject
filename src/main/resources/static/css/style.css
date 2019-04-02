@@ -21,6 +21,10 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0;
 }
 
+.nav-link:hover{
+    color: #b8b5b3;
+}
+
 .login-content{
     padding-left: 20%;
 }
@@ -47,9 +51,9 @@ ul.nav-tabs{
 }
 
 .nav-title{
-    color: #d4d1cf;
+    color: #E2DFDD;
     font-family: Lobster;
-    font-size: xx-large;
+    font-size: 30px;
 }
 
 .navbar{
@@ -57,7 +61,7 @@ ul.nav-tabs{
 }
 
 .nav-link{
-    color: #d4d1cf;
+    color: #e2dfdd;
 }
 
 .form-dark .font-small {

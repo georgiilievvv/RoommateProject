@@ -1,4 +1,5 @@
-<div class="modal fade register-modal" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+<div class="modal fade register-modal" id="register-modal" tabindex="-1" role="dialog"
+     aria-labelledby="myLargeModalLabel"
      aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content container register-modal" style="background-color: #e6e3e1">
@@ -10,7 +11,8 @@
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label for="usernameInput">Username</label>
-                        <input type="text" name="username" class="form-control" id="usernameInput" placeholder="Username"
+                        <input type="text" th:field="*{username}" class="form-control" id="usernameInput"
+                               placeholder="Username"
                                value=""
                                required>
                         <div class="invalid-feedback">
@@ -19,7 +21,8 @@
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="fullNameInput">Full name</label>
-                        <input type="text" name="fullName" class="form-control" id="fullNameInput" placeholder="Full name"
+                        <input type="text" th:field="*{fullName}" class="form-control" id="fullNameInput"
+                               placeholder="Full name"
                                value="" required>
                         <div class="invalid-feedback">
                             Enter your full name!
@@ -31,7 +34,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="inputGroupPrepend">@</span>
                             </div>
-                            <input type="text" name="email" class="form-control" id="validationCustomEmail"
+                            <input type="text" th:field="*{email}" class="form-control" id="validationCustomEmail"
                                    placeholder="Email"
                                    aria-describedby="inputGroupPrepend" required>
                             <div class="invalid-feedback">
@@ -43,7 +46,7 @@
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label for="inputPassword">Password</label>
-                        <input type="password" name="password" placeholder="Password" id="inputPassword"
+                        <input type="password" th:field="*{password}" placeholder="Password" id="inputPassword"
                                class="form-control" aria-describedby="passwordHelpInline">
                         <small id="passwordHelpInline" class="text-muted">
                             Must be 6-20 characters long.
@@ -51,7 +54,8 @@
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="inputConfirmPassword">Confirm Password</label>
-                        <input type="password" name="confirmPassword" placeholder="Confirm Password" id="inputConfirmPassword"
+                        <input type="password" th:field="*{confirmPassword}" placeholder="Confirm Password"
+                               id="inputConfirmPassword"
                                class="form-control" aria-describedby="confirmPasswordHelpInline">
                         <small id="confirmPasswordHelpInline" class="text-muted">
                             Must be 6-20 characters long.
@@ -59,22 +63,34 @@
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="inputConfirmPhoneNumber">Phone number</label>
-                        <input type="number" name="phoneNumber" placeholder="Phone number" id="inputConfirmPhoneNumber"
+                        <input type="number" th:field="*{phoneNumber}" placeholder="Phone number"
+                               id="inputConfirmPhoneNumber"
                                class="form-control" aria-describedby="confirmPasswordHelpInline">
                     </div>
 
                 </div>
                 <div class="form-row">
-                    <div class="col-md-4 mb-3">
+                    <div class="col-md-3 mb-3">
                         <label for="inputCity">City</label>
-                        <input type="text" name="city" class="form-control" id="inputCity" placeholder="City"
-                               required>
-                        <div class="invalid-feedback">
-                            Please provide a valid city.
-                        </div>
+                        <select th:field="*{city}" class="form-control" id="inputCity" placeholder="City"
+                                required>
+                            <th:block th:each="city : ${cityModels}">
+                                <option th:value="${city}" th:text="${city}"></option>
+                            </th:block>
+                            <div class="invalid-feedback">
+                                Please provide a valid city.
+                            </div>
+                        </select>
                     </div>
-
+                    <div class="col-md-2 mb-3">
+                        <label for="inputCity">Gender</label>
+                        <select class="custom-select " id="Magnitude" th:field="*{gender}">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
                 </div>
+
                 <div>
                     <div class="tab-content" id="v-pills-tabContent">
                         <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
@@ -100,6 +116,7 @@
                         </div>
                     </div>
                 </div>
+                <div></div>
                 <hr class="hr"/>
                 <div class="center-button">
                     <button class="btn btn-primary col-3 reg-button" type="submit">Register</button>
