@@ -1,7 +1,8 @@
 package softuni.project.domain.models.binding;
 
-import softuni.project.domain.entities.Gender;
-import softuni.project.domain.models.service.*;
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.*;
 
 
 public class UserRegisterBindingModel {
@@ -23,7 +24,9 @@ public class UserRegisterBindingModel {
 
     public UserRegisterBindingModel() {
     }
-
+    @NotNull(message = "Password cannot be null.")
+    @NotEmpty(message = "Password cannot be empty.")
+    @Length(min = 4, max = 20, message = "Password must be between 4 and 20 symbols long.")
     public String getUsername() {
         return username;
     }
@@ -32,6 +35,9 @@ public class UserRegisterBindingModel {
         this.username = username;
     }
 
+    @NotNull(message = "Username cannot be null.")
+    @NotEmpty(message = "Username cannot be empty.")
+    @Length(min = 2, message = "Username must be at least 2 symbols long.")
     public String getFullName() {
         return fullName;
     }
@@ -40,6 +46,9 @@ public class UserRegisterBindingModel {
         this.fullName = fullName;
     }
 
+    @NotNull(message = "Email cannot be null.")
+    @NotEmpty(message = "Email cannot be empty.")
+    @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$", message = "Please enter a valid email.")
     public String getEmail() {
         return email;
     }
@@ -48,6 +57,9 @@ public class UserRegisterBindingModel {
         this.email = email;
     }
 
+    @NotNull(message = "Password cannot be null.")
+    @NotEmpty(message = "Password cannot be empty.")
+    @Length(min = 6, max = 20, message = "Password must be between 4 and 20 symbols long.")
     public String getPassword() {
         return password;
     }
@@ -56,6 +68,9 @@ public class UserRegisterBindingModel {
         this.password = password;
     }
 
+    @NotNull(message = "Password cannot be null.")
+    @NotEmpty(message = "Password cannot be empty.")
+    @Length(min = 6, max = 20, message = "Password must be between 4 and 20 symbols long.")
     public String getConfirmPassword() {
         return confirmPassword;
     }
@@ -64,6 +79,8 @@ public class UserRegisterBindingModel {
         this.confirmPassword = confirmPassword;
     }
 
+    @NotNull(message = "Phone number cannot be null.")
+    @NotEmpty(message = "Phone number cannot be empty.")
     public String getPhoneNumber() {
         return phoneNumber;
     }

@@ -39,9 +39,13 @@ public class HomeController {
             bindingResult.addError(new FieldError("userRegisterBindingModel", "password", "Passwords don't match."));
         }
 
-//        if (bindingResult.hasErrors()) {
-//            return super.view("index", "userRegisterBindingModel", userRegisterBindingModel);
-//        }
+        if (bindingResult.hasErrors()) {
+            modelAndView.clear();
+            modelAndView.addObject("cityModels", getCityNames());
+            modelAndView.addObject("userRegisterBindingModel", userRegisterBindingModel);
+            modelAndView.setViewName("index");
+            return modelAndView;
+        }
 
 //        UserServiceModel userServiceModel = this.modelMapper.map(userRegisterBindingModel, UserServiceModel.class);
 //
@@ -56,14 +60,20 @@ public class HomeController {
 
     @GetMapping("/")
     public ModelAndView index(ModelAndView modelAndView, @ModelAttribute UserRegisterBindingModel bindingModel){
-        List<String> cities = cityService.findAllCities().stream()
-                .map(CityServiceModel::getName)
-                .collect(Collectors.toList());
 
         modelAndView.addObject("bindingModel", bindingModel);
-        modelAndView.addObject("cityModels", cities);
+        modelAndView.addObject("cityModels", getCityNames());
         modelAndView.setViewName("index");
 
         return modelAndView;
     }
+
+    private List<String>  getCityNames() {
+        return cityService.findAllCities().stream()
+                .map(CityServiceModel::getName)
+                .collect(Collectors.toList());
+    }
+
+
+
 }

@@ -6,27 +6,26 @@
             <h1 class="modal-title w-100 text-center white-text font-weight-bold" id="myModalLabel">
                 Register</h1>
 
-            <form class="needs-validation" th:action="@{/register}" method="post" th:object="${bindingModel}">
+            <form class="needs-validation" th:action="@{/register}" method="post"
+                  th:object="${userRegisterBindingModel}">
                 <hr class="hr"/>
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label for="usernameInput">Username</label>
-                        <input type="text" th:field="*{username}" class="form-control" id="usernameInput"
-                               placeholder="Username"
-                               value=""
-                               required>
-                        <div class="invalid-feedback">
-                            Enter your username!
-                        </div>
+                        <input type="text" th:field="*{username}"
+                               th:styleappend="${#fields.hasErrors('username')} ? border-color: red"
+                               class="form-control" id="usernameInput"
+                               placeholder="Username">
+                        <small style="color: red" th:each="error : ${#fields.errors('username')}"
+                               th:text="${error}"></small>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="fullNameInput">Full name</label>
                         <input type="text" th:field="*{fullName}" class="form-control" id="fullNameInput"
                                placeholder="Full name"
-                               value="" required>
-                        <div class="invalid-feedback">
-                            Enter your full name!
-                        </div>
+                               value="">
+                        <small style="color: red" th:each="error : ${#fields.errors('fullName')}"
+                               th:text="${error}"></small>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="validationCustomEmail">Email</label>
@@ -34,12 +33,10 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="inputGroupPrepend">@</span>
                             </div>
-                            <input type="text" th:field="*{email}" class="form-control" id="validationCustomEmail"
-                                   placeholder="Email"
-                                   aria-describedby="inputGroupPrepend" required>
-                            <div class="invalid-feedback">
-                                Please choose an email.
-                            </div>
+                            <input type="email" th:field="*{email}" class="form-control" id="validationCustomEmail"
+                                   placeholder="Email">
+                                <small style="color: red" th:each="error : ${#fields.errors('email')}"
+                                       th:text="${error}"></small>
                         </div>
                     </div>
                 </div>
@@ -48,24 +45,24 @@
                         <label for="inputPassword">Password</label>
                         <input type="password" th:field="*{password}" placeholder="Password" id="inputPassword"
                                class="form-control" aria-describedby="passwordHelpInline">
-                        <small id="passwordHelpInline" class="text-muted">
-                            Must be 6-20 characters long.
-                        </small>
+                        <small style="color: red" th:each="error : ${#fields.errors('password')}"
+                               th:text="${error}"></small>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="inputConfirmPassword">Confirm Password</label>
                         <input type="password" th:field="*{confirmPassword}" placeholder="Confirm Password"
                                id="inputConfirmPassword"
                                class="form-control" aria-describedby="confirmPasswordHelpInline">
-                        <small id="confirmPasswordHelpInline" class="text-muted">
-                            Must be 6-20 characters long.
-                        </small>
+                        <small style="color: red" th:each="error : ${#fields.errors('confirmPassword')}"
+                               th:text="${error}"></small>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="inputConfirmPhoneNumber">Phone number</label>
                         <input type="number" th:field="*{phoneNumber}" placeholder="Phone number"
                                id="inputConfirmPhoneNumber"
                                class="form-control" aria-describedby="confirmPasswordHelpInline">
+                        <small style="color: red" th:each="error : ${#fields.errors('phoneNumber')}"
+                               th:text="${error}"></small>
                     </div>
 
                 </div>
