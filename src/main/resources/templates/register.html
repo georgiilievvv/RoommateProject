@@ -15,15 +15,14 @@
                         <input type="text" th:field="*{username}"
                                th:styleappend="${#fields.hasErrors('username')} ? border-color: red"
                                class="form-control" id="usernameInput"
-                               placeholder="Username">
+                               placeholder="Username" required>
                         <small style="color: red" th:each="error : ${#fields.errors('username')}"
                                th:text="${error}"></small>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="fullNameInput">Full name</label>
                         <input type="text" th:field="*{fullName}" class="form-control" id="fullNameInput"
-                               placeholder="Full name"
-                               value="">
+                               placeholder="Full name" required>
                         <small style="color: red" th:each="error : ${#fields.errors('fullName')}"
                                th:text="${error}"></small>
                     </div>
@@ -34,9 +33,9 @@
                                 <span class="input-group-text" id="inputGroupPrepend">@</span>
                             </div>
                             <input type="email" th:field="*{email}" class="form-control" id="validationCustomEmail"
-                                   placeholder="Email">
-                                <small style="color: red" th:each="error : ${#fields.errors('email')}"
-                                       th:text="${error}"></small>
+                                   placeholder="Email" required>
+                            <small style="color: red" th:each="error : ${#fields.errors('email')}"
+                                   th:text="${error}"></small>
                         </div>
                     </div>
                 </div>
@@ -44,7 +43,7 @@
                     <div class="col-md-4 mb-3">
                         <label for="inputPassword">Password</label>
                         <input type="password" th:field="*{password}" placeholder="Password" id="inputPassword"
-                               class="form-control" aria-describedby="passwordHelpInline">
+                               class="form-control" aria-describedby="passwordHelpInline" required>
                         <small style="color: red" th:each="error : ${#fields.errors('password')}"
                                th:text="${error}"></small>
                     </div>
@@ -52,7 +51,7 @@
                         <label for="inputConfirmPassword">Confirm Password</label>
                         <input type="password" th:field="*{confirmPassword}" placeholder="Confirm Password"
                                id="inputConfirmPassword"
-                               class="form-control" aria-describedby="confirmPasswordHelpInline">
+                               class="form-control" aria-describedby="confirmPasswordHelpInline" required>
                         <small style="color: red" th:each="error : ${#fields.errors('confirmPassword')}"
                                th:text="${error}"></small>
                     </div>
@@ -60,14 +59,14 @@
                         <label for="inputConfirmPhoneNumber">Phone number</label>
                         <input type="number" th:field="*{phoneNumber}" placeholder="Phone number"
                                id="inputConfirmPhoneNumber"
-                               class="form-control" aria-describedby="confirmPasswordHelpInline">
+                               class="form-control" aria-describedby="confirmPasswordHelpInline" required>
                         <small style="color: red" th:each="error : ${#fields.errors('phoneNumber')}"
                                th:text="${error}"></small>
                     </div>
 
                 </div>
                 <div class="form-row">
-                    <div class="col-md-3 mb-3">
+                    <div class="col-md-4 mb-3">
                         <label for="inputCity">City</label>
                         <select th:field="*{city}" class="form-control" id="inputCity" placeholder="City"
                                 required>
@@ -80,40 +79,60 @@
                         </select>
                     </div>
                     <div class="col-md-2 mb-3">
-                        <label for="inputCity">Gender</label>
-                        <select class="custom-select " id="Magnitude" th:field="*{gender}">
+                        <label for="inputGender">Gender</label>
+                        <select class="custom-select " id="inputGender" th:field="*{gender}">
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
                         </select>
                     </div>
+                    <div class="col-md-2 ">
+                        <label for="inputAge">Age</label>
+                        <input type="number" th:field="*{age}" placeholder="Age"
+                               id="inputAge"
+                               class="form-control" required>
+                        <small style="color: red" th:each="error : ${#fields.errors('age')}"
+                               th:text="${error}"></small>
+                    </div>
+                    <div class="col-md-4 mb-3 align-text-bottom button-margin">
+                        <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                            <li class="nav-item btn-primary divider-vertical">
+                                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home"
+                                   role="tab" aria-controls="pills-home" aria-selected="true">Guest</a>
+                            </li>
+                            <li class="nav-item btn-primary divider-vertical">
+                                <a class="nav-link btn" id="pills-profile-tab" data-toggle="pill" href="#pills-profile"
+                                   role="tab" aria-controls="pills-profile" aria-selected="false">Landlord</a>
+                            </li>
+                        </ul>
+
+                    </div>
                 </div>
 
-                <div>
-                    <div class="tab-content" id="v-pills-tabContent">
-                        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
-                             aria-labelledby="v-pills-home-tab">
-                            <ul class="nav nav-tabs">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Guest</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link active" href="#">Landlord</a>
-                                </li>
-                            </ul>
+                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                    <div class="form-row">
+                        <div class="col-md-5 mb-3">
+                            <label for="inputConditions">Conditions</label>
+                            <textarea type="text" class="form-control" id="inputConditions"
+                                      placeholder="Conditions"
+                                      required></textarea>
+                            <!--<small style="color: red" th:each="error : ${#fields.errors('conditions')}"-->
+                            <!--th:text="${error}"></small>-->
                         </div>
-                        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
-                             aria-labelledby="v-pills-profile-tab">
-                            <div class="col-md-4 mb-3">
-                                <label for="usernameInput">Username</label>
-                                <input type="text" placeholder="Username" value="Mark">
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
-                             aria-labelledby="v-pills-messages-tab">
+                        <div class="col-md-3 mb-3">
+                            <label for="inputCity">Roommate Gender</label>
+                            <select class="custom-select " id="Magnitude">
+                                <option selected></option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
                         </div>
                     </div>
                 </div>
-                <div></div>
+                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                    am landlord
+                </div>
+
+
                 <hr class="hr"/>
                 <div class="center-button">
                     <button class="btn btn-primary col-3 reg-button" type="submit">Register</button>
@@ -155,6 +174,29 @@
                     $('.nav-tabs a').click(function () {
                         $('.nav-tabs a').removeClass('active');
                         $(this).addClass('active');
+
+                        if (this.text === 'Guest') {
+                            $('#guest-form').style.hide = false;
+                            $('#landlord-form').style.hide = true;
+                        } else {
+                            $('#guest-form').hidden = hidden;
+                            $('#landlord-form').style.visibility = visible;
+                        }
+                    });
+                });
+
+                $(document).ready(function () {
+                    $('.nav-tabs a').click(function () {
+                        $('.nav-tabs a').removeClass('active');
+                        $(this).addClass('active');
+
+                        if (this.text === 'Guest') {
+                            $('#guest-form').style.hide = false;
+                            $('#landlord-form').style.hide = true;
+                        } else {
+                            $('#guest-form').hidden = hidden;
+                            $('#landlord-form').style.visibility = visible;
+                        }
                     });
                 });
             </script>
