@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Repository;
 import softuni.project.domain.entities.Landlord;
 import softuni.project.domain.models.service.GuestServiceModel;
 import softuni.project.domain.models.service.LandlordServiceModel;
@@ -14,6 +15,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Repository
 public class LandlordServiceImpl implements LandlordService {
 
     private final LandlordRepository landlordRepository;
@@ -30,7 +32,7 @@ public class LandlordServiceImpl implements LandlordService {
     }
 
     @Override
-    public LandlordServiceModel registerUser(LandlordServiceModel landlordServiceModel) {
+    public LandlordServiceModel registerLandlord(LandlordServiceModel landlordServiceModel) {
         this.roleService.seedRolesInDb();
         if (this.landlordRepository.count() == 0) {
             landlordServiceModel.setAuthorities(this.roleService.findAllRoles());
@@ -48,21 +50,15 @@ public class LandlordServiceImpl implements LandlordService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public LandlordServiceModel findLandlordByUsername(String username) throws UsernameNotFoundException {
         return this.landlordRepository
                 .findByUsername(username)
+                .map(l -> this.modelMapper.map(l, LandlordServiceModel.class))
                 .orElseThrow(() -> new UsernameNotFoundException("Username not found!"));
     }
 
     @Override
-    public LandlordServiceModel findUserByUserName(String username) {
-        return this.landlordRepository.findByUsername(username)
-                .map(u -> this.modelMapper.map(u, LandlordServiceModel.class))
-                .orElseThrow(() -> new UsernameNotFoundException("Username not found!"));
-    }
-
-    @Override
-    public LandlordServiceModel editUserProfile(LandlordServiceModel landlordServiceModel, String oldPassword) {
+    public LandlordServiceModel editLandlordProfile(LandlordServiceModel landlordServiceModel, String oldPassword) {
         Landlord user = this.landlordRepository.findByUsername(landlordServiceModel.getUsername())
                 .orElseThrow(() -> new UsernameNotFoundException("Username not found!"));
 
@@ -79,36 +75,36 @@ public class LandlordServiceImpl implements LandlordService {
     }
 
     @Override
-    public List<LandlordServiceModel> findAllUsers() {
+    public List<LandlordServiceModel> findAllLandlords() {
         return this.landlordRepository.findAll()
-                .stream().map(u -> this.modelMapper.map(u, LandlordServiceModel.class))
+                .stream().map(l -> this.modelMapper.map(l, LandlordServiceModel.class))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public void setUserRole(String id, String role) {
-        Landlord user = this.landlordRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Incorrect id!"));
-
-        LandlordServiceModel landlordServiceModel = this.modelMapper.map(user, LandlordServiceModel.class);
-        landlordServiceModel.getAuthorities().clear();
-
-        switch (role) {
-            case "user":
-                landlordServiceModel.getAuthorities().add(this.roleService.findByAuthority("ROLE_USER"));
-                break;
-            case "moderator":
-                landlordServiceModel.getAuthorities().add(this.roleService.findByAuthority("ROLE_USER"));
-                landlordServiceModel.getAuthorities().add(this.roleService.findByAuthority("ROLE_MODERATOR"));
-                break;
-            case "admin":
-                landlordServiceModel.getAuthorities().add(this.roleService.findByAuthority("ROLE_USER"));
-                landlordServiceModel.getAuthorities().add(this.roleService.findByAuthority("ROLE_MODERATOR"));
-                landlordServiceModel.getAuthorities().add(this.roleService.findByAuthority("ROLE_ADMIN"));
-                break;
-        }
-
-        this.landlordRepository.saveAndFlush(this.modelMapper.map(landlordServiceModel, Landlord.class));
+    public void setLandlordRole(String id, String role) {
+//        Landlord user = this.landlordRepository.findById(id)
+//                .orElseThrow(() -> new IllegalArgumentException("Incorrect id!"));
+//
+//        LandlordServiceModel landlordServiceModel = this.modelMapper.map(user, LandlordServiceModel.class);
+//        landlordServiceModel.getAuthorities().clear();
+//
+//        switch (role) {
+//            case "user":
+//                landlordServiceModel.getAuthorities().add(this.roleService.findByAuthority("ROLE_USER"));
+//                break;
+//            case "moderator":
+//                landlordServiceModel.getAuthorities().add(this.roleService.findByAuthority("ROLE_USER"));
+//                landlordServiceModel.getAuthorities().add(this.roleService.findByAuthority("ROLE_MODERATOR"));
+//                break;
+//            case "admin":
+//                landlordServiceModel.getAuthorities().add(this.roleService.findByAuthority("ROLE_USER"));
+//                landlordServiceModel.getAuthorities().add(this.roleService.findByAuthority("ROLE_MODERATOR"));
+//                landlordServiceModel.getAuthorities().add(this.roleService.findByAuthority("ROLE_ADMIN"));
+//                break;
+//        }
+//
+//        this.landlordRepository.saveAndFlush(this.modelMapper.map(landlordServiceModel, Landlord.class));
     }
 
 

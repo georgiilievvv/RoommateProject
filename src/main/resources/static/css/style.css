@@ -108,6 +108,7 @@ a.nav-link.btn:active{
     left: 19px;
 }
 
-.landlord-form{
-    position: center;
+#guest-landlord-container{
+    padding-right: 5%;
+    padding-left: 5%;
 }

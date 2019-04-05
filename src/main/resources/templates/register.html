@@ -87,7 +87,7 @@
                     </div>
                     <div class="col-md-2 ">
                         <label for="inputAge">Age</label>
-                        <input type="number" th:field="*{age}" placeholder="Age"
+                        <input type="number" min="18" max="100" th:field="*{age}" placeholder="Age"
                                id="inputAge"
                                class="form-control" required>
                         <small style="color: red" th:each="error : ${#fields.errors('age')}"
@@ -96,33 +96,34 @@
                     <div class="col-md-4 mb-3 align-text-bottom button-margin">
                         <ul class="nav nav-pills" id="pills-tab" role="tablist">
                             <li class="nav-item btn-primary divider-vertical">
-                                <a class="nav-link btn active" id="pills-guest-tab" data-toggle="pill" href="#pills-guest"
-                                   role="tab" aria-controls="pills-guest" aria-selected="true">Guest</a>
+                                <a class="nav-link btn " id="pills-guest-tab" data-toggle="pill"
+                                   href="#pills-guest-landlord-form"
+                                   role="tab" aria-controls="pills-guest-landlord-form" aria-selected="true">Guest</a>
                             </li>
                             <li class="nav-item btn-primary divider-vertical">
-                                <a class="nav-link btn" id="pills-landlord-tab" data-toggle="pill" href="#pills-guest"
-                                   role="tab" aria-controls="pills-guest" aria-selected="false">Landlord</a>
+                                <a class="nav-link btn active" id="pills-landlord-tab" data-toggle="pill" href="#pills-guest-landlord-form"
+                                   role="tab" aria-controls="pills-guest-landlord-form" aria-selected="false">Landlord</a>
                             </li>
                         </ul>
 
                     </div>
                 </div>
 
-                <div class="tab-pane fade show active" id="pills-guest" role="tabpanel"
+                <div class="tab-pane fade show active" id="pills-guest-landlord-form" role="tabpanel"
                      aria-labelledby="pills-home-tab">
-                    <div class="form-row landlord-form container">
+                    <div id="guest-landlord-container" class="form-row landlord-form container">
                         <div class="col-md-9 mb-3">
                             <label for="inputConditions">Conditions</label>
-                            <textarea type="text" class="form-control" id="inputConditions"
+                            <textarea type="text" th:field="*{conditions}" class="form-control" id="inputConditions"
                                       placeholder="Conditions"
                                       required></textarea>
-                            <!--<small style="color: red" th:each="error : ${#fields.errors('conditions')}"-->
-                            <!--th:text="${error}"></small>-->
+                            <small style="color: red" th:each="error : ${#fields.errors('conditions')}"
+                            th:text="${error}"></small>
                         </div>
                         <div class="col-md-3 mb-3">
-                            <label for="inputCity">Roommate Gender</label>
-                            <select class="custom-select " id="Magnitude">
-                                <option selected>Male & Female</option>
+                            <label for="inputRoommateGender">Roommate Gender</label>
+                            <select class="custom-select" th:field="*{roommateGender}" id="inputRoommateGender">
+                                <option value="">Male & Female</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                             </select>
@@ -170,15 +171,32 @@
                 $(document).ready(function () {
                     $('.nav-pills a').click(function () {
 
+                        var father = $('#guest-landlord-container')
+
                         if (this.text === 'Guest') {
-                            $('#guest-form') = 'Preferences';
-                            $('#guest-form') = 'Preferences';
-                            $('#pills-guest').appendChild(gustForm);
+                            father.empty()
+                            father.append("<div class=\"col-md-12 mb-3\"><label for=\"inputPreferences\">Preferences</label><textarea name=\"preferences\" placeholder=\"Preferences\" id=\"inputPreferences\" class=\"form-control\" required></textarea><small style=\"color: red\" th:each=\"error : ${#fields.errors('preferences')}\" th:text=\"${error}\"></small></div>")
                         } else {
-                            var landForm = $('#guest-form');
-                            landForm.text = 'Conditions';
-                            landForm.placeholder = 'Conditions';
-                            $('#pills-guest').appendTo(landForm);
+                            father.empty()
+                            father.append("<div class=\"col-md-9 mb-3\">\n" +
+                                "                            <label for=\"inputConditions\">Conditions</label>\n" +
+                                "                            <textarea type=\"text\" name=\"conditions\" class=\"form-control\" id=\"inputConditions\"\n" +
+                                "                                      placeholder=\"Conditions\"\n" +
+                                "                                      required></textarea>\n" +
+                                "                            <small style=\"color: red\" th:each=\"error : ${#fields.errors('conditions')}\"\n" +
+                                "                            th:text=\"${error}\"></small>\n" +
+                                "                        </div>"
+                                )
+
+
+                            father.append("<div class=\"col-md-3 mb-3\">\n" +
+                                "                            <label for=\"inputRoommateGender\">Roommate Gender</label>\n" +
+                                "                            <select class=\"custom-select \" name=\"roommateGender\" id=\"inputRoommateGender\">\n" +
+                                "                                <option selected>Male & Female</option>\n" +
+                                "                                <option value=\"Male\">Male</option>\n" +
+                                "                                <option value=\"Female\">Female</option>\n" +
+                                "                            </select>\n" +
+                                "                        </div>")
                         }
                     });
                 });

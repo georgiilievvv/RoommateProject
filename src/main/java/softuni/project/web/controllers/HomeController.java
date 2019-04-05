@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import softuni.project.domain.models.binding.UserRegisterBindingModel;
 import softuni.project.domain.models.service.CityServiceModel;
-import softuni.project.domain.models.view.CityViewModel;
+import softuni.project.domain.models.service.UserServiceModel;
 import softuni.project.service.CityService;
+import softuni.project.service.UserService;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -23,11 +24,13 @@ import java.util.stream.Collectors;
 public class HomeController {
 
     private final ModelMapper modelMapper;
+    private final UserService userService;
     private final CityService cityService;
 
     @Autowired
-    public HomeController(ModelMapper modelMapper, CityService cityService) {
+    public HomeController(ModelMapper modelMapper, UserService userService, CityService cityService) {
         this.modelMapper = modelMapper;
+        this.userService = userService;
         this.cityService = cityService;
     }
 
@@ -47,13 +50,11 @@ public class HomeController {
             return modelAndView;
         }
 
-//        UserServiceModel userServiceModel = this.modelMapper.map(userRegisterBindingModel, UserServiceModel.class);
-//
-//        if (!this.userService.registerUser(userServiceModel)) {
-//            throw new UserRegisterFailureException("Registering user " + userServiceModel.getEmail() + " failed.");
-//        }
-//
-//        this.logAction(userServiceModel, "Registered successfully.");
+        UserServiceModel userServiceModel = this.modelMapper.map(userRegisterBindingModel, UserServiceModel.class);
+
+        if (this.userService.registerUser(userServiceModel) == null) {
+            throw new UserRegisterFailureException("Registering user " + userServiceModel.getEmail() + " failed.");
+        }
 
         return modelAndView;
     }

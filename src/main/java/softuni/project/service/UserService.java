@@ -1,18 +1,12 @@
 package softuni.project.service;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
-
+import softuni.project.domain.models.service.UserServiceModel;
 import java.util.List;
 
-public interface UserService<E> extends UserDetailsService {
+public interface UserService extends UserDetailsService {
     
-    E registerUser(E model);
+    UserServiceModel registerUser(UserServiceModel userServiceModel);
 
-    E findUserByUserName(String username);
-
-    E editUserProfile(E userServiceModel, String oldPassword);
-
-    List<E> findAllUsers();
-
-    void setUserRole(String id, String role);
+    List<UserServiceModel> findAllUsers();
 }
