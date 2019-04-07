@@ -1,12 +1,12 @@
 package softuni.project.domain.models.service;
 
-import softuni.project.domain.entities.BaseUser;
+import softuni.project.domain.entities.User;
 
 import java.math.BigDecimal;
 
 public class ApartmentServiceModel extends BaseServiceModel{
 
-    private BaseUser owner;
+    private User owner;
     private CityServiceModel city;
     private	String address;
     private	Double quadrature;
@@ -28,11 +28,11 @@ public class ApartmentServiceModel extends BaseServiceModel{
     public ApartmentServiceModel() {
     }
 
-    public BaseUser getOwner() {
+    public User getOwner() {
         return owner;
     }
 
-    public void setOwner(BaseUser owner) {
+    public void setOwner(User owner) {
         this.owner = owner;
     }
 

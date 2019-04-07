@@ -1,5 +1,7 @@
 package softuni.project.domain.models.service;
 
+import java.util.Set;
+
 public class UserServiceModel {
 
     private String username;
@@ -15,6 +17,16 @@ public class UserServiceModel {
     private boolean isAccountNonLocked;
     private boolean isCredentialsNonExpired;
     private boolean isEnabled;
+    private Set<RoleServiceModel> authorities;
+
+    public Set<RoleServiceModel> getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(Set<RoleServiceModel> authorities) {
+        this.authorities = authorities;
+    }
+
     private String preferences;
     private String roommateGender;
     private String conditions;

@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 @MappedSuperclass
 public class Accommodation extends BaseEntity{
 
-    private BaseUser owner;
+    private User owner;
     private City city;
     private	String address;
     private	Double quadrature;
@@ -26,16 +26,16 @@ public class Accommodation extends BaseEntity{
     protected Accommodation() {
     }
 
-    @OneToOne(targetEntity = Landlord.class)
+    @OneToOne(targetEntity = User.class)
     @JoinColumn(
-            name = "landlord_id", referencedColumnName = "id",
+            name = "user_id", referencedColumnName = "id",
             nullable = false
     )
-    public BaseUser getOwner() {
+    public User getOwner() {
         return owner;
     }
 
-    public void setOwner(BaseUser owner) {
+    public void setOwner(User owner) {
         this.owner = owner;
     }
 

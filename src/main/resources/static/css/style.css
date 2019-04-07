@@ -21,7 +21,14 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0;
 }
 
-
+/*.logout-button{*/
+    /*font-family: inherit;*/
+    /*font-weight: 500;*/
+    /*line-height: 1.2;*/
+    /*background-color: #343a40;*/
+    /*border-color: #343a40;*/
+    /*color: #b8b5b3;*/
+/*}*/
 
 a.nav-link:hover{
     background-color: #383e44;
@@ -90,6 +97,10 @@ ul.nav-tabs{
 }
 
 a.nav-link.btn:active{
+    background-color: transparent;
+}
+
+button.nav-link.btn:active{
     background-color: #383e44;
 }
 

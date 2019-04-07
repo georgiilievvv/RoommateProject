@@ -1,13 +1,13 @@
 package softuni.project.domain.models.service;
 
-import softuni.project.domain.entities.BaseUser;
+import softuni.project.domain.entities.User;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 public class HouseServiceModel extends BaseServiceModel{
 
-    private BaseUser owner;
+    private UserServiceModel owner;
     private CityServiceModel city;
     private	String address;
     private	Double quadrature;
@@ -24,16 +24,16 @@ public class HouseServiceModel extends BaseServiceModel{
     private	String moreInfo;
     private boolean hasYard;
     private Double yardQuadrature;
-    private List<GuestServiceModel> candidates;
+    private List<UserServiceModel> candidates;
 
     public HouseServiceModel() {
     }
 
-    public BaseUser getOwner() {
+    public UserServiceModel getOwner() {
         return owner;
     }
 
-    public void setOwner(BaseUser owner) {
+    public void setOwner(UserServiceModel owner) {
         this.owner = owner;
     }
 
@@ -165,11 +165,11 @@ public class HouseServiceModel extends BaseServiceModel{
         this.yardQuadrature = yardQuadrature;
     }
 
-    public List<GuestServiceModel> getCandidates() {
+    public List<UserServiceModel> getCandidates() {
         return candidates;
     }
 
-    public void setCandidates(List<GuestServiceModel> candidates) {
+    public void setCandidates(List<UserServiceModel> candidates) {
         this.candidates = candidates;
     }
 }

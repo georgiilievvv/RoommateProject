@@ -12,7 +12,7 @@ public class House extends Accommodation {
 
     private boolean hasYard;
     private Double yardQuadrature;
-    private List<Guest> candidates;
+    private List<User> candidates;
 
     public House() {
     }
@@ -36,11 +36,11 @@ public class House extends Accommodation {
     }
 
     @ManyToMany
-    public List<Guest> getCandidates() {
+    public List<User> getCandidates() {
         return candidates;
     }
 
-    public void setCandidates(List<Guest> candidates) {
+    public void setCandidates(List<User> candidates) {
         this.candidates = candidates;
     }
 }
