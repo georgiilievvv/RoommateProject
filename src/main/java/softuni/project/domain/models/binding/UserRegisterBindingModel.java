@@ -15,7 +15,7 @@ public class UserRegisterBindingModel {
     private String phoneNumber;
     private Integer age;
     private String gender;
-    private String city;
+    private String cityId;
     private boolean isAccountNonExpired;
     private boolean isAccountNonLocked;
     private boolean isCredentialsNonExpired;
@@ -30,7 +30,7 @@ public class UserRegisterBindingModel {
 
     @NotNull(message = "Password cannot be null.")
     @NotEmpty(message = "Password cannot be empty.")
-    @Length(min = 4, max = 20, message = "Password must be between 4 and 20 symbols long.")
+    @Length(min = 4, max = 30, message = "Password must be between 4 and 20 symbols long.")
     public String getUsername() {
         return username;
     }
@@ -40,7 +40,7 @@ public class UserRegisterBindingModel {
     }
 
     @NotNull(message = "Username cannot be null.")
-    @NotEmpty(message = "Username cannot be empty.")
+    @NotEmpty(message = "Username cannot be empty." )
     @Length(min = 2, message = "Username must be at least 2 symbols long.")
     public String getFullName() {
         return fullName;
@@ -63,7 +63,7 @@ public class UserRegisterBindingModel {
 
     @NotNull(message = "Password cannot be null.")
     @NotEmpty(message = "Password cannot be empty.")
-    @Length(min = 6, max = 20, message = "Password must be between 4 and 20 symbols long.")
+    @Length(min = 4, max = 20, message = "Password must be between 4 and 20 symbols long.")
     public String getPassword() {
         return password;
     }
@@ -74,7 +74,6 @@ public class UserRegisterBindingModel {
 
     @NotNull(message = "Password cannot be null.")
     @NotEmpty(message = "Password cannot be empty.")
-    @Length(min = 6, max = 20, message = "Password must be between 4 and 20 symbols long.")
     public String getConfirmPassword() {
         return confirmPassword;
     }
@@ -109,12 +108,12 @@ public class UserRegisterBindingModel {
         this.gender = gender;
     }
 
-    public String getCity() {
-        return city;
+    public String getCityId() {
+        return cityId;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setCityId(String cityId) {
+        this.cityId = cityId;
     }
 
     public boolean isAccountNonExpired() {

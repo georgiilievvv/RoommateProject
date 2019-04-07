@@ -19,13 +19,15 @@ import java.util.stream.Collectors;
 public class LandlordServiceImpl implements LandlordService {
 
     private final LandlordRepository landlordRepository;
+    private final CityService cityService;
     private final RoleService roleService;
     private final ModelMapper modelMapper;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    public LandlordServiceImpl(LandlordRepository landlordRepository, RoleService roleService, ModelMapper modelMapper, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public LandlordServiceImpl(LandlordRepository landlordRepository, CityService cityService, RoleService roleService, ModelMapper modelMapper, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.landlordRepository = landlordRepository;
+        this.cityService = cityService;
         this.roleService = roleService;
         this.modelMapper = modelMapper;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
@@ -34,6 +36,9 @@ public class LandlordServiceImpl implements LandlordService {
     @Override
     public LandlordServiceModel registerLandlord(LandlordServiceModel landlordServiceModel) {
         this.roleService.seedRolesInDb();
+
+        landlordServiceModel.setCity(this.cityService.findCityById(landlordServiceModel.getCity().getId()));
+
         if (this.landlordRepository.count() == 0) {
             landlordServiceModel.setAuthorities(this.roleService.findAllRoles());
         } else {
@@ -42,11 +47,12 @@ public class LandlordServiceImpl implements LandlordService {
             landlordServiceModel.getAuthorities().add(this.roleService.findByAuthority("ROLE_USER"));
         }
 
+        Landlord landlord = this.modelMapper.map(landlordServiceModel, Landlord.class);
+        landlord.setPassword(this.bCryptPasswordEncoder.encode(landlordServiceModel.getPassword()));
 
-        Landlord user = this.modelMapper.map(landlordServiceModel, Landlord.class);
-        user.setPassword(this.bCryptPasswordEncoder.encode(landlordServiceModel.getPassword()));
+        Landlord entity = this.landlordRepository.saveAndFlush(landlord);
 
-        return this.modelMapper.map(this.landlordRepository.saveAndFlush(user), LandlordServiceModel.class);
+        return this.modelMapper.map(entity, LandlordServiceModel.class);
     }
 
     @Override
@@ -83,33 +89,32 @@ public class LandlordServiceImpl implements LandlordService {
 
     @Override
     public void setLandlordRole(String id, String role) {
-//        Landlord user = this.landlordRepository.findById(id)
-//                .orElseThrow(() -> new IllegalArgumentException("Incorrect id!"));
-//
-//        LandlordServiceModel landlordServiceModel = this.modelMapper.map(user, LandlordServiceModel.class);
-//        landlordServiceModel.getAuthorities().clear();
-//
-//        switch (role) {
-//            case "user":
-//                landlordServiceModel.getAuthorities().add(this.roleService.findByAuthority("ROLE_USER"));
-//                break;
-//            case "moderator":
-//                landlordServiceModel.getAuthorities().add(this.roleService.findByAuthority("ROLE_USER"));
-//                landlordServiceModel.getAuthorities().add(this.roleService.findByAuthority("ROLE_MODERATOR"));
-//                break;
-//            case "admin":
-//                landlordServiceModel.getAuthorities().add(this.roleService.findByAuthority("ROLE_USER"));
-//                landlordServiceModel.getAuthorities().add(this.roleService.findByAuthority("ROLE_MODERATOR"));
-//                landlordServiceModel.getAuthorities().add(this.roleService.findByAuthority("ROLE_ADMIN"));
-//                break;
-//        }
-//
-//        this.landlordRepository.saveAndFlush(this.modelMapper.map(landlordServiceModel, Landlord.class));
-    }
+        Landlord user = this.landlordRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Incorrect id!"));
 
+        LandlordServiceModel landlordServiceModel = this.modelMapper.map(user, LandlordServiceModel.class);
+        landlordServiceModel.getAuthorities().clear();
+
+        switch (role) {
+            case "user":
+                landlordServiceModel.getAuthorities().add(this.roleService.findByAuthority("ROLE_USER"));
+                break;
+            case "admin":
+                landlordServiceModel.getAuthorities().add(this.roleService.findByAuthority("ROLE_USER"));
+                landlordServiceModel.getAuthorities().add(this.roleService.findByAuthority("ROLE_ADMIN"));
+                break;
+        }
+
+        this.landlordRepository.saveAndFlush(this.modelMapper.map(landlordServiceModel, Landlord.class));
+    }
 
     @Override
     public List<GuestServiceModel> findAllApprovedGuests() {
         return null;
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return this.landlordRepository.findByUsername(username).orElseThrow(IllegalArgumentException::new);
     }
 }

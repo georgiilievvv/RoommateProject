@@ -25,7 +25,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserServiceModel registerUser(UserServiceModel userServiceModel) {
 
-        if (userServiceModel.getPreferences() != null){
+        if (userServiceModel.getPreferences() == null){
+
+            if (userServiceModel.getRoommateGender().equals("")) {
+                userServiceModel.setRoommateGender(null);
+            }
+
             this.landlordService.registerLandlord(this.modelMapper
                     .map(userServiceModel, LandlordServiceModel.class));
         }else {
@@ -37,11 +42,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserServiceModel> findAllUsers() {
-        return null;
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         return null;
     }
 }

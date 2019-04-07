@@ -16,6 +16,7 @@ import softuni.project.domain.models.service.UserServiceModel;
 import softuni.project.service.CityService;
 import softuni.project.service.UserService;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,7 +40,7 @@ public class HomeController {
     public ModelAndView registerConfirm(ModelAndView modelAndView, @Valid @ModelAttribute("userRegisterBindingModel") UserRegisterBindingModel userRegisterBindingModel
             , BindingResult bindingResult) {
         if (!userRegisterBindingModel.getPassword().equals(userRegisterBindingModel.getConfirmPassword())) {
-            bindingResult.addError(new FieldError("userRegisterBindingModel", "password", "Passwords don't match."));
+            bindingResult.addError(new FieldError("userRegisterBindingModel", "confirmPassword", "Passwords didn't match."));
         }
 
         if (bindingResult.hasErrors()) {
@@ -52,14 +53,15 @@ public class HomeController {
 
         UserServiceModel userServiceModel = this.modelMapper.map(userRegisterBindingModel, UserServiceModel.class);
 
-        if (this.userService.registerUser(userServiceModel) == null) {
-            throw new UserRegisterFailureException("Registering user " + userServiceModel.getEmail() + " failed.");
-        }
+        this.userService.registerUser(userServiceModel);
+
+        modelAndView.setViewName("redirect:/test");
 
         return modelAndView;
     }
 
     @GetMapping("/")
+    @PreAuthorize("isAnonymous()")
     public ModelAndView index(ModelAndView modelAndView, @ModelAttribute UserRegisterBindingModel bindingModel){
 
         modelAndView.addObject("bindingModel", bindingModel);
@@ -69,12 +71,21 @@ public class HomeController {
         return modelAndView;
     }
 
-    private List<String>  getCityNames() {
-        return cityService.findAllCities().stream()
-                .map(CityServiceModel::getName)
-                .collect(Collectors.toList());
+    @GetMapping("/test")
+//    @PreAuthorize("hasAnyAuthority()")
+    public ModelAndView home(ModelAndView modelAndView){
+
+        modelAndView.setViewName("test");
+
+        return modelAndView;
     }
 
+
+    private List<CityServiceModel>  getCityNames() {
+        return cityService.findAllCities().stream()
+                .map(c -> modelMapper.map(c, CityServiceModel.class))
+                .collect(Collectors.toList());
+    }
 
 
 }

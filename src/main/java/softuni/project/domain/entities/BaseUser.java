@@ -4,7 +4,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Set;
 
 @MappedSuperclass
@@ -18,10 +17,6 @@ public class BaseUser extends BaseEntity implements UserDetails {
     private Integer age;
     private Gender gender;
     private City city;
-    private boolean isAccountNonExpired;
-    private boolean isAccountNonLocked;
-    private boolean isCredentialsNonExpired;
-    private boolean isEnabled;
     private Set<Role> authorities;
 
     public BaseUser() {
@@ -104,43 +99,27 @@ public class BaseUser extends BaseEntity implements UserDetails {
     }
 
     @Override
-    @Column(name = "is_account_non_expired")
+    @Transient
     public boolean isAccountNonExpired() {
-        return isAccountNonExpired;
-    }
-
-    public void setAccountNonExpired(boolean accountNonExpired) {
-        isAccountNonExpired = accountNonExpired;
+        return true;
     }
 
     @Override
-    @Column(name = "is_account_non_locked")
+    @Transient
     public boolean isAccountNonLocked() {
-        return isAccountNonLocked;
-    }
-
-    public void setAccountNonLocked(boolean accountNonLocked) {
-        isAccountNonLocked = accountNonLocked;
+        return true;
     }
 
     @Override
-    @Column(name = "is_credentials_non_expired")
+    @Transient
     public boolean isCredentialsNonExpired() {
-        return isCredentialsNonExpired;
-    }
-
-    public void setCredentialsNonExpired(boolean credentialsNonExpired) {
-        isCredentialsNonExpired = credentialsNonExpired;
+        return true;
     }
 
     @Override
-    @Column(name = "is_enabled")
+    @Transient
     public boolean isEnabled() {
-        return isEnabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        isEnabled = enabled;
+        return true;
     }
 
     @Override
@@ -150,7 +129,7 @@ public class BaseUser extends BaseEntity implements UserDetails {
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
     )
-    public Collection<? extends GrantedAuthority> getAuthorities() {
+    public Set<Role> getAuthorities() {
         return authorities;
     }
 

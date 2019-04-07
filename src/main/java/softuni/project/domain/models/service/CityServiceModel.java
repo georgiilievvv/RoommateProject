@@ -2,16 +2,16 @@ package softuni.project.domain.models.service;
 
 public class CityServiceModel extends BaseServiceModel{
 
-    private String name;
+    private String cityName;
 
     public CityServiceModel() {
     }
 
-    public String getName() {
-        return name;
+    public String getCityName() {
+        return cityName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
     }
 }

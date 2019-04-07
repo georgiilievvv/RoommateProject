@@ -1,12 +1,13 @@
 package softuni.project.service;
 
+import org.springframework.security.core.userdetails.UserDetailsService;
 import softuni.project.domain.models.service.GuestServiceModel;
 import softuni.project.domain.models.service.LandlordServiceModel;
 import softuni.project.domain.models.service.LandlordServiceModel;
 
 import java.util.List;
 
-public interface LandlordService{
+public interface LandlordService extends UserDetailsService {
 
     List<GuestServiceModel> findAllApprovedGuests();
     

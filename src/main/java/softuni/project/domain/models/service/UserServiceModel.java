@@ -10,7 +10,7 @@ public class UserServiceModel {
     private String phoneNumber;
     private Integer age;
     private String gender;
-    private String city;
+    private CityServiceModel city;
     private boolean isAccountNonExpired;
     private boolean isAccountNonLocked;
     private boolean isCredentialsNonExpired;
@@ -86,11 +86,11 @@ public class UserServiceModel {
         this.gender = gender;
     }
 
-    public String getCity() {
+    public CityServiceModel getCity() {
         return city;
     }
 
-    public void setCity(String city) {
+    public void setCity(CityServiceModel city) {
         this.city = city;
     }
 

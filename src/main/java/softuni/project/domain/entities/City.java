@@ -6,18 +6,18 @@ import javax.persistence.*;
 @Table(name = "cities")
 public class City extends BaseEntity{
 
-    private String name;
+    private String cityName;
 
     public City() {
     }
 
-    @Column(name = "name", nullable = false)
-    public String getName() {
-        return name;
+    @Column(name = "city_name", nullable = false)
+    public String getCityName() {
+        return cityName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
     }
 
 }
