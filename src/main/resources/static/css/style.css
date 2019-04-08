@@ -21,14 +21,14 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0;
 }
 
-.side-nav.col-3{
+.side-nav.col-2{
     background-color: rgb(42, 58, 85);
     color: rgba(255, 252, 250, 0.74);
     padding-right: 0px;
 }
 
 .side-nav.nav-link{
-    padding-left: 15%;
+    padding-left: 12%;
     border-radius: 0 0;
 }
 

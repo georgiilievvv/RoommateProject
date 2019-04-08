@@ -1,0 +1,28 @@
+<div class="album py-3 bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <th:block th:each="i: ${#numbers.sequence(0, 15)}">
+                <div class="col-md-3">
+                    <div class="card mb-3 box-shadow">
+                        <img class="card-img-top"
+                             data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
+                             alt="Thumbnail [100%x225]" style="height: 200px; width: 100%; display: block;"
+                             src="https://www.sony.bg/image/f6ed466855bcaeda7241430905d89848?fmt=png-alpha&wid=1440">
+                        <div class="card-body">
+                            <p class="card-text">Money:250 лв.</p>
+                            <p class="card-text">City: Sofia</p>
+                            <p class="card-text">Person: bai Pesho</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                </div>
+                                <small class="text-muted">9 mins</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </th:block>
+        </div>
+    </div>
+</div>
