@@ -18,6 +18,7 @@ import softuni.project.service.UserService;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -71,15 +72,15 @@ public class HomeController {
         return modelAndView;
     }
 
-    @GetMapping("/test")
-//    @PreAuthorize("hasAnyAuthority()")
-    public ModelAndView home(ModelAndView modelAndView){
+    @GetMapping("/home")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    public ModelAndView home(ModelAndView modelAndView, Principal principal){
 
-        modelAndView.setViewName("test");
+        modelAndView.addObject("name", this.userService.findUserByUserName(principal.getName()).getFullName().split("\\s+")[0]);
+        modelAndView.setViewName("home");
 
         return modelAndView;
     }
-
 
     private List<CityServiceModel>  getCityNames() {
         return cityService.findAllCities().stream()
