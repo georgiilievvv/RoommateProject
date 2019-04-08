@@ -76,7 +76,7 @@ public class HomeController {
     @PreAuthorize("hasRole('ROLE_USER')")
     public ModelAndView home(ModelAndView modelAndView, Principal principal){
 
-        modelAndView.addObject("name", this.userService.findUserByUserName(principal.getName()).getFullName().split("\\s+")[0]);
+        modelAndView.addObject("user", this.userService.findUserByUserName(principal.getName()));
         modelAndView.setViewName("home");
 
         return modelAndView;

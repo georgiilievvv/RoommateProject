@@ -1,6 +1,6 @@
 
 .footer{
-    background-color: #343a40;
+    background-color: #2b3740;
     color: #e6e3e1;
 }
 
@@ -22,8 +22,8 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .side-nav.col-3{
-    background-color: rgba(137,134,132,0.64);
-    color: rgba(236,233,231,0.64);
+    background-color: rgb(42, 58, 85);
+    color: rgba(255, 252, 250, 0.74);
     padding-right: 0px;
 }
 
@@ -33,27 +33,27 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .nav-pills .nav-link.active {
-    background-color: rgba(57, 107, 161, 0.55);
+    background-color: rgba(47, 68, 91, 0.99);
     color: #f7f4f2;
 }
 
 .align-text-bottom{
     padding-top: 5%;
-
 }
 
 .align-text-bottom h5{
     margin-bottom: 0;
 }
 
-a.top-side-nav{
+a.top-side-nav, a.top-side-nav.nav-link.side-nav:hover{
     padding-bottom: 5%;
     padding-top: 7%;
-    background-color: #2d547e;
+    background-color: #24344b;
     color: #b8b5b3;
 }
 
 a.side-nav.nav-link:hover{
+    flex: 0 0 25%;
     background-color: #366598;
     color: #b8b5b3;
 }
@@ -91,7 +91,7 @@ ul.nav-tabs{
 }
 
 .navbar{
-    background-color: #343a40;
+    background-color: #2b3740;
 }
 
 .nav-link{
@@ -140,4 +140,13 @@ button.nav-link.btn:active{
 #guest-landlord-container{
     padding-right: 5%;
     padding-left: 5%;
+}
+
+.card-img-top{
+    height: 200px;
+    width: 100%;
+    /*background-image: url("http://i.stack.imgur.com/2OrtT.jpg");*/
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
 }
