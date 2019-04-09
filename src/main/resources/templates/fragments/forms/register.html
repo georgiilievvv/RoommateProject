@@ -101,8 +101,10 @@
                                    role="tab" aria-controls="pills-guest-landlord-form" aria-selected="true">Guest</a>
                             </li>
                             <li class="nav-item btn-primary divider-vertical">
-                                <a class="nav-link btn active" id="pills-landlord-tab" data-toggle="pill" href="#pills-guest-landlord-form"
-                                   role="tab" aria-controls="pills-guest-landlord-form" aria-selected="false">Landlord</a>
+                                <a class="nav-link btn active" id="pills-landlord-tab" data-toggle="pill"
+                                   href="#pills-guest-landlord-form"
+                                   role="tab" aria-controls="pills-guest-landlord-form"
+                                   aria-selected="false">Landlord</a>
                             </li>
                         </ul>
 
@@ -118,7 +120,7 @@
                                       placeholder="Conditions"
                                       required></textarea>
                             <small style="color: red" th:each="error : ${#fields.errors('conditions')}"
-                            th:text="${error}"></small>
+                                   th:text="${error}"></small>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label for="inputRoommateGender">Roommate Gender</label>
@@ -139,14 +141,10 @@
                     <small class="d-flex justify-content-end">Have an account?
                         <a href="#" class="green-text ml-1 font-weight-bold"
                            data-target="#login-modal" data-toggle="modal" data-dismiss="modal">Login</a>
-
-                        <!--<button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target=".register-modal">Next</button>-->
-
                     </small>
                 </div>
 
             </form>
-
 
             <script>
 
@@ -169,7 +167,7 @@
                                 "                            <small style=\"color: red\" th:each=\"error : ${#fields.errors('conditions')}\"\n" +
                                 "                            th:text=\"${error}\"></small>\n" +
                                 "                        </div>"
-                                )
+                            )
 
 
                             father.append("<div class=\"col-md-3 mb-3\">\n" +
@@ -184,9 +182,9 @@
                     });
                 });
 
-                $(document).ready(function(){
+                $(document).ready(function () {
                     $(window.location.hash).modal('show');
-                    $('a[data-toggle="modal"]').click(function(){
+                    $('a[data-toggle="modal"]').click(function () {
                         window.location.hash = $(this).attr('href');
                     });
                 });

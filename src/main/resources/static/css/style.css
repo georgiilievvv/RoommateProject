@@ -73,8 +73,8 @@ ul.nav-tabs{
 }
 
 .reg-button{
-    border-color: #383e44;
-    background-color: #4d545a;
+    border-color: rgba(34, 62, 91, 0.98);
+    background-color: rgba(47, 68, 91, 0.99);
 }
 
 .register-modal{

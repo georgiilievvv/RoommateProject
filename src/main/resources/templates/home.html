@@ -22,25 +22,29 @@
                         <img src="https://powerplants.com.au/wp-content/uploads/2017/04/no-profile-pic.jpg" width="60px"
                              style="border-radius: 60px 60px;">
                     </div>
-                    <div  align="center"><th:block th:text="${user.fullName}"> </th:block></div>
-                    <div  align="center"><small><th:block th:text="${user.username}"> </th:block></small></div>
+                    <div align="center">
+                        <th:block th:text="${user.fullName}"></th:block>
+                    </div>
+                    <div align="center">
+                        <small>
+                            <th:block th:text="${user.username}"></th:block>
+                        </small>
+                    </div>
 
                 </a>
-                <th:block sec:authorize="hasAuthority('ROLE_ADMIN')">
-                    <a class="nav-link side-nav active" id="v-pills-profile-tab" data-toggle="pill"
-                       href="#v-pills-profile"
-                       role="tab" aria-controls="v-pills-profile" aria-selected="false">Edit Profile</a>
-                </th:block>
-                <a class="nav-link side-nav" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages"
+                <a class="nav-link side-nav" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile"
+                   role="tab" aria-controls="v-pills-profile" aria-selected="false">Edit Profile</a>
+                <a class="nav-link side-nav active" id="v-pills-messages-tab" data-toggle="pill"
+                   href="#v-pills-messages"
                    role="tab" aria-controls="v-pills-messages" aria-selected="false">Landlord Approvals</a>
                 <a class="nav-link side-nav" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings"
                    role="tab" aria-controls="v-pills-settings" aria-selected="false">Marked Accommodations</a>
             </div>
         </div>
-        <div class="col-10">
+        <div class="col-10" style="background-color: rgba(119,147,255,0.15)">
             <div class="tab-content" id="v-pills-tabContent">
                 <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
-                aria-labelledby="v-pills-home-tab">
+                     aria-labelledby="v-pills-home-tab">
                     Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
                     industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
                     and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
@@ -111,7 +115,154 @@
                     alteration in some form, by injected humour, or rando
                 </div>
                 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                    2
+                    <div class=" container register-modal">
+                        <h1 class="modal-title w-100 text-center white-text font-weight-bold" id="myModalLabel">
+                            Edit Profile</h1>
+                        <form class="needs-validation" th:action="@{/edit-profile}" method="post"
+                              th:object="${user}">
+                            <hr class="hr"/>
+                            <div class="form-row">
+                                <div class="col-md-4 mb-3">
+                                    <label for="usernameInput">Username</label>
+                                    <input type="text" th:field="*{username}" class="form-control" id="usernameInput"
+                                           placeholder="Username" required>
+                                    <small style="color: red" th:each="error : ${#fields.errors('username')}"
+                                           th:text="${error}"></small>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="fullNameInput">Full name</label>
+                                    <input type="text" th:field="*{fullName}" class="form-control"
+                                           id="fullNameInput"
+                                           placeholder="Full name" required>
+                                    <small style="color: red" th:each="error : ${#fields.errors('fullName')}"
+                                           th:text="${error}"></small>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="validationCustomEmail">Email</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroupPrepend">@</span>
+                                        </div>
+                                        <input type="email" th:field="*{email}" class="form-control"
+                                               id="validationCustomEmail"
+                                               placeholder="Email" required>
+                                        <small style="color: red" th:each="error : ${#fields.errors('email')}"
+                                               th:text="${error}"></small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-4 mb-3">
+                                    <label for="inputPassword">Password</label>
+                                    <input type="password" th:field="*{password}" placeholder="Password"
+                                           id="inputPassword"
+                                           class="form-control" aria-describedby="passwordHelpInline" required>
+                                    <small style="color: red" th:each="error : ${#fields.errors('password')}"
+                                           th:text="${error}"></small>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="inputConfirmPassword">Confirm Password</label>
+                                    <input type="password" th:field="*{confirmPassword}"
+                                           placeholder="Confirm Password"
+                                           id="inputConfirmPassword"
+                                           class="form-control" aria-describedby="confirmPasswordHelpInline"
+                                           required>
+                                    <small style="color: red" th:each="error : ${#fields.errors('confirmPassword')}"
+                                           th:text="${error}"></small>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="inputConfirmPhoneNumber">Phone number</label>
+                                    <input type="number" th:field="*{phoneNumber}" placeholder="Phone number"
+                                           id="inputConfirmPhoneNumber"
+                                           class="form-control" aria-describedby="confirmPasswordHelpInline"
+                                           required>
+                                    <small style="color: red" th:each="error : ${#fields.errors('phoneNumber')}"
+                                           th:text="${error}"></small>
+                                </div>
+
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-4 mb-3">
+                                    <label for="inputCity">City</label>
+                                    <select th:field="*{city.id}" class="form-control" id="inputCity"
+                                            placeholder="City"
+                                            required>
+                                        <th:block th:each="city : ${cityModels}">
+                                            <option th:value="${city.id}" th:text="${city.cityName}"></option>
+                                        </th:block>
+                                        <div class="invalid-feedback">
+                                            Please provide a valid city.
+                                        </div>
+                                    </select>
+                                </div>
+                                <div class="col-md-2 mb-3">
+                                    <label for="inputGender">Gender</label>
+                                    <select class="custom-select " id="inputGender" th:field="*{gender}">
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2 ">
+                                    <label for="inputAge">Age</label>
+                                    <input type="number" min="18" max="100" th:field="*{age}" placeholder="Age"
+                                           id="inputAge"
+                                           class="form-control" required>
+                                    <small style="color: red" th:each="error : ${#fields.errors('age')}"
+                                           th:text="${error}"></small>
+                                </div>
+                            </div>
+
+                            <th:block sec:authorize="hasAuthority('ROLE_LANDLORD')">
+                                <div class="tab-pane fade show active" id="pills-guest-landlord-form" role="tabpanel"
+                                     aria-labelledby="pills-home-tab">
+                                    <div id="guest-landlord-container" class="form-row landlord-form container">
+                                        <div class="col-md-9 mb-3">
+                                            <label for="inputConditions">Conditions</label>
+                                            <textarea type="text" th:field="*{conditions}" class="form-control"
+                                                      id="inputConditions"
+                                                      placeholder="Conditions"
+                                                      required></textarea>
+                                            <small style="color: red" th:each="error : ${#fields.errors('conditions')}"
+                                                   th:text="${error}"></small>
+                                        </div>
+                                        <div class="col-md-3 mb-3">
+                                            <label for="inputRoommateGender">Roommate Gender</label>
+                                            <select class="custom-select" th:field="*{roommateGender}"
+                                                    id="inputRoommateGender">
+                                                <option value="">Male & Female</option>
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </th:block>
+                            <th:block sec:authorize="hasAuthority('ROLE_GUEST')">
+                                <div class="col-md-12 mb-3"><label for="inputPreferences">Preferences</label><textarea
+                                        th:field="*{preferences}" placeholder="Preferences" id="inputPreferences"
+                                        class="form-control" required></textarea>
+                                    <small style="color: red" th:each="error : ${#fields.errors('preferences')}"
+                                           th:text="${error}"></small>
+                                </div>
+                            </th:block>
+
+
+                            <hr class="hr"/>
+                            <div class="center-button">
+                                <button class="btn btn-primary col-3 reg-button" type="submit">Edit</button>
+                            </div>
+                            <div class="col-md-12">
+                                <small class="d-flex justify-content-end">Have an account?
+                                    <a href="#" class="green-text ml-1 font-weight-bold"
+                                       data-target="#login-modal" data-toggle="modal" data-dismiss="modal">Login</a>
+
+                                    <!--<button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target=".register-modal">Next</button>-->
+
+                                </small>
+                            </div>
+
+                        </form>
+                    </div>
                 </div>
                 <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                     <th:block th:include="~{fragments/product}"></th:block>
