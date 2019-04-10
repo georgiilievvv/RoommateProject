@@ -70,12 +70,7 @@
                         <label for="inputCity">City</label>
                         <select th:field="*{cityId}" class="form-control" id="inputCity" placeholder="City"
                                 required>
-                            <th:block th:each="city : ${cityModels}">
-                                <option th:value="${city.id}" th:text="${city.cityName}"></option>
-                            </th:block>
-                            <div class="invalid-feedback">
-                                Please provide a valid city.
-                            </div>
+
                         </select>
                     </div>
                     <div class="col-md-2 mb-3">
@@ -147,8 +142,6 @@
             </form>
 
             <script>
-
-
                 $(document).ready(function () {
                     $('.nav-pills a').click(function () {
 

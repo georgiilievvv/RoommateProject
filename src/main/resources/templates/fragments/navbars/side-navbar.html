@@ -1,0 +1,47 @@
+<a class="nav-link col-xs-1 center-block side-nav top-side-nav" id="v-pills-home-tab">
+    <div align="center" style="padding-top: 6%">
+        <img src="https://powerplants.com.au/wp-content/uploads/2017/04/no-profile-pic.jpg" width="60px"
+             style="border-radius: 60px 60px;">
+    </div>
+    <div align="center">
+        <th:block th:text="${user.fullName}"></th:block>
+    </div>
+    <div align="center">
+        <small>
+            <th:block th:text="${user.username}"></th:block>
+        </small>
+    </div>
+</a>
+<a class="nav-link side-nav" id="edit-profile-tab" href="/edit-profile">Edit Profile</a>
+<th:block sec:authorize="!hasRole('ROLE_ADMIN')">
+    <a class="nav-link side-nav" id="v-pills-users-tab" href="/users">Users</a>
+    <a class="nav-link side-nav active" id="v-pills-accommodations-tab" href="/accommodations">Accommodations</a>
+</th:block>
+<th:block sec:authorize="hasRole('ROLE_GUEST') && !hasRole('ROLE_ADMIN')">
+    <a class="nav-link side-nav" id="v-pills-landlord-approvals-tab"
+       href="/guest/landlord-approvals">Landlord Approvals</a>
+    <a class="nav-link side-nav" id="v-pills-marked-accommodations-tab"
+       href="/guest/marked-accommodations">Marked Accommodations</a>
+</th:block>
+<th:block sec:authorize="hasRole('ROLE_LANDLORD') && !hasRole('ROLE_ADMIN')">
+    <a class="nav-link side-nav" id="v-pills-approved-roommates-tab" href="/landlord/approved-roommates">Approved Roommates</a>
+</th:block>
+<th:block sec:authorize="hasRole('ROLE_ADMIN')">
+    <a class="nav-link side-nav" id="v-pills-moderator-users-tab" href="/moderator/users">Users</a>
+    <a class="nav-link side-nav" id="v-pills-moderator-accommodations-tab" href="/moderator/accommodations">Accommodations</a>
+    <a class="nav-link side-nav" id="v-pills-cities-tab" href="/moderator/cities">Cities</a>
+    <a class="nav-link side-nav" id="v-pills-reports-tab" href="/moderator/reports">Reports</a>
+    <a class="nav-link side-nav" id="v-pills-messages-tab" href="/moderator/messages">Messages</a>
+</th:block>
+<script>
+    $(function(){
+        var current = location.pathname;
+        $('.side-nav a').each(function(){
+            var $this = $(this);
+
+            if($this.attr('href') === current){
+                $this.addClass('active');
+            }
+        })
+    })
+</script>

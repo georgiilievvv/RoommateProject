@@ -1,0 +1,48 @@
+<th:block th:fragment>
+
+    <nav class="navbar navbar-expand-lg " style="margin-inside: 20px">
+        <div class="container">
+            <th:block sec:authorize="isAnonymous()">
+                <a class="navbar-brand h4" th:href="@{/}">
+                    <span class="nav-title">Roomster</span>
+                </a>
+            </th:block>
+            <th:block sec:authorize="isAuthenticated()">
+                <a class="navbar-brand h4" th:href="@{/}">
+                    <span class="nav-title">Roomster</span>
+                </a>
+            </th:block>
+
+            <div class="nav justify-content-end" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <th:block sec:authorize="isAnonymous()">
+                        <h5>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="modal" data-target="#login-modal"
+                                   href="#login">Login</a>
+                            </li>
+                        </h5>
+                        <li class="nav-item">
+                            <h5><a class="nav-link" data-toggle="modal" data-target="#register-modal"
+                                   href="#register">Register</a></h5>
+                        </li>
+                        <th:block th:include="~{fragments/forms/login}"></th:block>
+                        <th:block th:include="~{fragments/forms/register}"></th:block>
+                    </th:block>
+                    <th:block sec:authorize="isAuthenticated()">
+                        <li class="nav-item">
+                            <h5>
+                                <a href="/about-us" class="nav-link">About us</a>
+                            </h5>
+                        </li>
+                        <li class="nav-item">
+                            <h5>
+                                <a href="/logout" class="nav-link">Logout</a>
+                            </h5>
+                        </li>
+                    </th:block>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</th:block>
