@@ -7,8 +7,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 public class UserEditBindingModel {
+
     private String username;
-    private String fullName;
+    private String firstName;
     private String email;
     private String oldPassword;
     private String newPassword;
@@ -16,21 +17,14 @@ public class UserEditBindingModel {
     private Integer age;
     private String gender;
     private String cityId;
-    private boolean isAccountNonExpired;
-    private boolean isAccountNonLocked;
-    private boolean isCredentialsNonExpired;
-    private boolean isEnabled;
-    private String preferences;
-    private String roommateGender;
     private String conditions;
+    private String roommateGender;
+    private String preferences;
 
 
     public UserEditBindingModel() {
     }
 
-    @NotNull(message = "Password cannot be null.")
-    @NotEmpty(message = "Password cannot be empty.")
-    @Length(min = 4, max = 30, message = "Password must be between 4 and 20 symbols long.")
     public String getUsername() {
         return username;
     }
@@ -40,14 +34,14 @@ public class UserEditBindingModel {
     }
 
     @NotNull(message = "Username cannot be null.")
-    @NotEmpty(message = "Username cannot be empty." )
+    @NotEmpty(message = "Username cannot be empty.")
     @Length(min = 2, message = "Username must be at least 2 symbols long.")
-    public String getFullName() {
-        return fullName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     @NotNull(message = "Email cannot be null.")
@@ -116,44 +110,12 @@ public class UserEditBindingModel {
         this.cityId = cityId;
     }
 
-    public boolean isAccountNonExpired() {
-        return isAccountNonExpired;
+    public String getConditions() {
+        return conditions;
     }
 
-    public void setAccountNonExpired(boolean accountNonExpired) {
-        isAccountNonExpired = accountNonExpired;
-    }
-
-    public boolean isAccountNonLocked() {
-        return isAccountNonLocked;
-    }
-
-    public void setAccountNonLocked(boolean accountNonLocked) {
-        isAccountNonLocked = accountNonLocked;
-    }
-
-    public boolean isCredentialsNonExpired() {
-        return isCredentialsNonExpired;
-    }
-
-    public void setCredentialsNonExpired(boolean credentialsNonExpired) {
-        isCredentialsNonExpired = credentialsNonExpired;
-    }
-
-    public boolean isEnabled() {
-        return isEnabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        isEnabled = enabled;
-    }
-
-    public String getPreferences() {
-        return preferences;
-    }
-
-    public void setPreferences(String preferences) {
-        this.preferences = preferences;
+    public void setConditions(String conditions) {
+        this.conditions = conditions;
     }
 
     public String getRoommateGender() {
@@ -164,11 +126,12 @@ public class UserEditBindingModel {
         this.roommateGender = roommateGender;
     }
 
-    public String getConditions() {
-        return conditions;
+    public String getPreferences() {
+
+        return preferences;
     }
 
-    public void setConditions(String conditions) {
-        this.conditions = conditions;
+    public void setPreferences(String preferences) {
+        this.preferences = preferences;
     }
 }

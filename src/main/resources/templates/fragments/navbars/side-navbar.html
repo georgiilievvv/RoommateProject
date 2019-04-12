@@ -4,18 +4,18 @@
              style="border-radius: 60px 60px;">
     </div>
     <div align="center">
-        <th:block th:text="${user.fullName}"></th:block>
+        <!--<th:block th:text="${principal.username}"></th:block>-->
     </div>
-    <div align="center">
-        <small>
-            <th:block th:text="${user.username}"></th:block>
-        </small>
-    </div>
+    <!--<div align="center">-->
+        <!--<small>-->
+            <!--<th:block th:text="${#principal.name}"></th:block>-->
+        <!--</small>-->
+    <!--</div>-->
 </a>
 <a class="nav-link side-nav" id="edit-profile-tab" href="/edit-profile">Edit Profile</a>
 <th:block sec:authorize="!hasRole('ROLE_ADMIN')">
     <a class="nav-link side-nav" id="v-pills-users-tab" href="/users">Users</a>
-    <a class="nav-link side-nav active" id="v-pills-accommodations-tab" href="/accommodations">Accommodations</a>
+    <a class="nav-link side-nav" id="v-pills-accommodations-tab" href="/accommodations">Accommodations</a>
 </th:block>
 <th:block sec:authorize="hasRole('ROLE_GUEST') && !hasRole('ROLE_ADMIN')">
     <a class="nav-link side-nav" id="v-pills-landlord-approvals-tab"

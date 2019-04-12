@@ -5,7 +5,7 @@ import java.util.Set;
 public class UserServiceModel {
 
     private String username;
-    private String fullName;
+    private String firstName;
     private String email;
     private String password;
     private String confirmPassword;
@@ -42,12 +42,12 @@ public class UserServiceModel {
         this.username = username;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getEmail() {

@@ -8,18 +8,14 @@ import javax.validation.constraints.*;
 public class UserRegisterBindingModel {
 
     private String username;
-    private String fullName;
+    private String firstName;
     private String email;
     private String password;
     private String confirmPassword;
     private String phoneNumber;
-    private Integer age;
+    private int age;
     private String gender;
     private String cityId;
-    private boolean isAccountNonExpired;
-    private boolean isAccountNonLocked;
-    private boolean isCredentialsNonExpired;
-    private boolean isEnabled;
     private String preferences;
     private String roommateGender;
     private String conditions;
@@ -28,9 +24,6 @@ public class UserRegisterBindingModel {
     public UserRegisterBindingModel() {
     }
 
-    @NotNull(message = "Password cannot be null.")
-    @NotEmpty(message = "Password cannot be empty.")
-    @Length(min = 4, max = 30, message = "Password must be between 4 and 20 symbols long.")
     public String getUsername() {
         return username;
     }
@@ -39,20 +32,14 @@ public class UserRegisterBindingModel {
         this.username = username;
     }
 
-    @NotNull(message = "Username cannot be null.")
-    @NotEmpty(message = "Username cannot be empty." )
-    @Length(min = 2, message = "Username must be at least 2 symbols long.")
-    public String getFullName() {
-        return fullName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    @NotNull(message = "Email cannot be null.")
-    @NotEmpty(message = "Email cannot be empty.")
-    @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$", message = "Please enter a valid email.")
     public String getEmail() {
         return email;
     }
@@ -61,9 +48,6 @@ public class UserRegisterBindingModel {
         this.email = email;
     }
 
-    @NotNull(message = "Password cannot be null.")
-    @NotEmpty(message = "Password cannot be empty.")
-    @Length(min = 4, max = 20, message = "Password must be between 4 and 20 symbols long.")
     public String getPassword() {
         return password;
     }
@@ -72,8 +56,6 @@ public class UserRegisterBindingModel {
         this.password = password;
     }
 
-    @NotNull(message = "Password cannot be null.")
-    @NotEmpty(message = "Password cannot be empty.")
     public String getConfirmPassword() {
         return confirmPassword;
     }
@@ -82,8 +64,6 @@ public class UserRegisterBindingModel {
         this.confirmPassword = confirmPassword;
     }
 
-    @NotNull(message = "Phone number cannot be null.")
-    @NotEmpty(message = "Phone number cannot be empty.")
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -92,11 +72,11 @@ public class UserRegisterBindingModel {
         this.phoneNumber = phoneNumber;
     }
 
-    public Integer getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(Integer age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
@@ -114,38 +94,6 @@ public class UserRegisterBindingModel {
 
     public void setCityId(String cityId) {
         this.cityId = cityId;
-    }
-
-    public boolean isAccountNonExpired() {
-        return isAccountNonExpired;
-    }
-
-    public void setAccountNonExpired(boolean accountNonExpired) {
-        isAccountNonExpired = accountNonExpired;
-    }
-
-    public boolean isAccountNonLocked() {
-        return isAccountNonLocked;
-    }
-
-    public void setAccountNonLocked(boolean accountNonLocked) {
-        isAccountNonLocked = accountNonLocked;
-    }
-
-    public boolean isCredentialsNonExpired() {
-        return isCredentialsNonExpired;
-    }
-
-    public void setCredentialsNonExpired(boolean credentialsNonExpired) {
-        isCredentialsNonExpired = credentialsNonExpired;
-    }
-
-    public boolean isEnabled() {
-        return isEnabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        isEnabled = enabled;
     }
 
     public String getPreferences() {

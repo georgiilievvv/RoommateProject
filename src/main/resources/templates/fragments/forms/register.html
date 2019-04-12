@@ -1,6 +1,6 @@
 <div class="modal fade register-modal" id="register-modal" tabindex="-1" role="dialog"
      aria-labelledby="myLargeModalLabel"
-     aria-hidden="true">
+     aria-hidden="true" xmlns:th="http://www.w3.org/1999/html">
     <div class="modal-dialog modal-lg">
         <div class="modal-content container register-modal" style="background-color: #e6e3e1">
             <h1 class="modal-title w-100 text-center white-text font-weight-bold" id="myModalLabel">
@@ -15,15 +15,15 @@
                         <input type="text" th:field="*{username}"
                                th:styleappend="${#fields.hasErrors('username')} ? border-color: red"
                                class="form-control" id="usernameInput"
-                               placeholder="Username" required>
+                               placeholder="Username">
                         <small style="color: red" th:each="error : ${#fields.errors('username')}"
                                th:text="${error}"></small>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="fullNameInput">Full name</label>
-                        <input type="text" th:field="*{fullName}" class="form-control" id="fullNameInput"
-                               placeholder="Full name" required>
-                        <small style="color: red" th:each="error : ${#fields.errors('fullName')}"
+                        <label for="firstNameInput">First name</label>
+                        <input type="text" th:field="*{firstName}" class="form-control" id="firstNameInput"
+                               placeholder="Full name">
+                        <small style="color: red" th:each="error : ${#fields.errors('firstName')}"
                                th:text="${error}"></small>
                     </div>
                     <div class="col-md-4 mb-3">
@@ -33,17 +33,17 @@
                                 <span class="input-group-text" id="inputGroupPrepend">@</span>
                             </div>
                             <input type="email" th:field="*{email}" class="form-control" id="validationCustomEmail"
-                                   placeholder="Email" required>
-                            <small style="color: red" th:each="error : ${#fields.errors('email')}"
-                                   th:text="${error}"></small>
+                                   placeholder="Email">
                         </div>
+                        <small style="color: red" th:each="error : ${#fields.errors('email')}"
+                               th:text="${error}"></small>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label for="inputPassword">Password</label>
                         <input type="password" th:field="*{password}" placeholder="Password" id="inputPassword"
-                               class="form-control" aria-describedby="passwordHelpInline" required>
+                               class="form-control" aria-describedby="passwordHelpInline">
                         <small style="color: red" th:each="error : ${#fields.errors('password')}"
                                th:text="${error}"></small>
                     </div>
@@ -51,7 +51,7 @@
                         <label for="inputConfirmPassword">Confirm Password</label>
                         <input type="password" th:field="*{confirmPassword}" placeholder="Confirm Password"
                                id="inputConfirmPassword"
-                               class="form-control" aria-describedby="confirmPasswordHelpInline" required>
+                               class="form-control" aria-describedby="confirmPasswordHelpInline">
                         <small style="color: red" th:each="error : ${#fields.errors('confirmPassword')}"
                                th:text="${error}"></small>
                     </div>
@@ -59,7 +59,7 @@
                         <label for="inputConfirmPhoneNumber">Phone number</label>
                         <input type="number" th:field="*{phoneNumber}" placeholder="Phone number"
                                id="inputConfirmPhoneNumber"
-                               class="form-control" aria-describedby="confirmPasswordHelpInline" required>
+                               class="form-control" aria-describedby="confirmPasswordHelpInline">
                         <small style="color: red" th:each="error : ${#fields.errors('phoneNumber')}"
                                th:text="${error}"></small>
                     </div>
@@ -68,9 +68,10 @@
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label for="inputCity">City</label>
-                        <select th:field="*{cityId}" class="form-control" id="inputCity" placeholder="City"
-                                required>
-
+                        <select th:field="*{cityId}" class="form-control" id="inputCity" placeholder="City">
+                            <th:block th:each="city : ${cityModels}">
+                                <option th:value="${city.id}" th:text="${city.cityName}"></option>
+                            </th:block>
                         </select>
                     </div>
                     <div class="col-md-2 mb-3">
@@ -82,9 +83,9 @@
                     </div>
                     <div class="col-md-2 ">
                         <label for="inputAge">Age</label>
-                        <input type="number" min="18" max="100" th:field="*{age}" placeholder="Age"
+                        <input type="number" th:field="*{age}" placeholder="Age"
                                id="inputAge"
-                               class="form-control" required>
+                               class="form-control">
                         <small style="color: red" th:each="error : ${#fields.errors('age')}"
                                th:text="${error}"></small>
                     </div>
@@ -92,7 +93,7 @@
                         <ul class="nav nav-pills" id="pills-tab" role="tablist">
                             <li class="nav-item btn-primary divider-vertical">
                                 <a class="nav-link btn " id="pills-guest-tab" data-toggle="pill"
-                                   href="#pills-guest-landlord-form"
+                                   href="#pills-guest-landlord-form" style="width: 65px"
                                    role="tab" aria-controls="pills-guest-landlord-form" aria-selected="true">Guest</a>
                             </li>
                             <li class="nav-item btn-primary divider-vertical">
@@ -113,7 +114,7 @@
                             <label for="inputConditions">Conditions</label>
                             <textarea type="text" th:field="*{conditions}" class="form-control" id="inputConditions"
                                       placeholder="Conditions"
-                                      required></textarea>
+                                     ></textarea>
                             <small style="color: red" th:each="error : ${#fields.errors('conditions')}"
                                    th:text="${error}"></small>
                         </div>
@@ -130,7 +131,7 @@
 
                 <hr class="hr"/>
                 <div class="center-button">
-                    <button class="btn btn-primary col-3 reg-button" type="submit">Register</button>
+                    <button class="btn btn-primary reg-button" type="submit">Register</button>
                 </div>
                 <div class="col-md-12">
                     <small class="d-flex justify-content-end">Have an account?
@@ -141,47 +142,49 @@
 
             </form>
 
-            <script>
-                $(document).ready(function () {
-                    $('.nav-pills a').click(function () {
-
-                        var father = $('#guest-landlord-container')
-
-                        if (this.text === 'Guest') {
-                            father.empty()
-                            father.append("<div class=\"col-md-12 mb-3\"><label for=\"inputPreferences\">Preferences</label><textarea name=\"preferences\" placeholder=\"Preferences\" id=\"inputPreferences\" class=\"form-control\" required></textarea><small style=\"color: red\" th:each=\"error : ${#fields.errors('preferences')}\" th:text=\"${error}\"></small></div>")
-                        } else {
-                            father.empty()
-                            father.append("<div class=\"col-md-9 mb-3\">\n" +
-                                "                            <label for=\"inputConditions\">Conditions</label>\n" +
-                                "                            <textarea type=\"text\" name=\"conditions\" class=\"form-control\" id=\"inputConditions\"\n" +
-                                "                                      placeholder=\"Conditions\"\n" +
-                                "                                      required></textarea>\n" +
-                                "                            <small style=\"color: red\" th:each=\"error : ${#fields.errors('conditions')}\"\n" +
-                                "                            th:text=\"${error}\"></small>\n" +
-                                "                        </div>"
-                            )
-
-
-                            father.append("<div class=\"col-md-3 mb-3\">\n" +
-                                "                            <label for=\"inputRoommateGender\">Roommate Gender</label>\n" +
-                                "                            <select class=\"custom-select \" name=\"roommateGender\" id=\"inputRoommateGender\">\n" +
-                                "                                <option selected>Male & Female</option>\n" +
-                                "                                <option value=\"Male\">Male</option>\n" +
-                                "                                <option value=\"Female\">Female</option>\n" +
-                                "                            </select>\n" +
-                                "                        </div>")
-                        }
-                    });
-                });
-
-                $(document).ready(function () {
-                    $(window.location.hash).modal('show');
-                    $('a[data-toggle="modal"]').click(function () {
-                        window.location.hash = $(this).attr('href');
-                    });
-                });
-            </script>
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $('.nav-pills a').click(function () {
+
+            var father = $('#guest-landlord-container')
+
+            if (this.text === 'Guest') {
+                father.empty()
+                father.append("<div class=\"col-md-12 mb-3\"><label for=\"inputPreferences\">Preferences</label><textarea name=\"preferences\" placeholder=\"Preferences\" id=\"inputPreferences\" class=\"form-control\"></textarea><small style=\"color: red\" th:each=\"error : ${#fields.errors('preferences')}\" th:text=\"${error}\"></small></div>")
+            } else {
+                father.empty()
+                father.append("<div class=\"col-md-9 mb-3\">\n" +
+                    "                            <label for=\"inputConditions\">Conditions</label>\n" +
+                    "                            <textarea type=\"text\" name=\"conditions\" class=\"form-control\" id=\"inputConditions\"\n" +
+                    "                                      placeholder=\"Conditions\"\n" +
+                    "                                     ></textarea>\n" +
+                    "                            <small style=\"color: red\" th:each=\"error : ${#fields.errors('conditions')}\"\n" +
+                    "                            th:text=\"${error}\"></small>\n" +
+                    "                        </div>"
+                )
+
+
+                father.append("<div class=\"col-md-3 mb-3\">\n" +
+                    "                            <label for=\"inputRoommateGender\">Roommate Gender</label>\n" +
+                    "                            <select class=\"custom-select \" name=\"roommateGender\" id=\"inputRoommateGender\">\n" +
+                    "                                <option selected>Male & Female</option>\n" +
+                    "                                <option value=\"Male\">Male</option>\n" +
+                    "                                <option value=\"Female\">Female</option>\n" +
+                    "                            </select>\n" +
+                    "                        </div>")
+            }
+        });
+    });
+
+    $(function () {
+        var current = location.pathname;
+
+        if (current === "/register") {
+            $("#register-modal").modal('show');
+
+        }
+    })
+</script>

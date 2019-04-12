@@ -2,22 +2,19 @@
     <h1 class="modal-title w-100 text-center white-text font-weight-bold" id="myModalLabel">
         Edit Profile</h1>
     <form class="needs-validation" th:action="@{/edit-profile}" method="post"
-          th:object="${user}">
+          th:object="${editUserModel}">
         <hr class="hr"/>
         <div class="form-row">
             <div class="col-md-4 mb-3">
-                <label for="usernameInput">Username</label>
-                <input type="text" th:field="*{username}" class="form-control" id="usernameInput"
-                       placeholder="Username" required>
-                <small style="color: red" th:each="error : ${#fields.errors('username')}"
-                       th:text="${error}"></small>
+                <label >Username</label>
+                <label th:text="*{username}" class="form-control" style="background-color: rgba(231,231,248,0.98);" >Username</label>
             </div>
             <div class="col-md-4 mb-3">
                 <label for="fullNameInput">Full name</label>
-                <input type="text" th:field="*{fullName}" class="form-control"
+                <input type="text" th:field="*{firstName}" class="form-control"
                        id="fullNameInput"
                        placeholder="Full name" required>
-                <small style="color: red" th:each="error : ${#fields.errors('fullName')}"
+                <small style="color: red" th:each="error : ${#fields.errors('firstName')}"
                        th:text="${error}"></small>
             </div>
             <div class="col-md-4 mb-3">
@@ -36,21 +33,18 @@
         </div>
         <div class="form-row">
             <div class="col-md-4 mb-3">
-                <label for="inputPassword">Password</label>
-                <input type="password" th:field="*{password}" placeholder="Password"
-                       id="inputPassword"
+                <label for="inputPassword">Old Password</label>
+                <input type="password" th:field="*{oldPassword}" placeholder="Old Password"
+                       id="inputOldPassword"
                        class="form-control" aria-describedby="passwordHelpInline" required>
-                <small style="color: red" th:each="error : ${#fields.errors('password')}"
+                <small style="color: red" th:each="error : ${#fields.errors('oldPassword')}"
                        th:text="${error}"></small>
             </div>
             <div class="col-md-4 mb-3">
-                <label for="inputConfirmPassword">Confirm Password</label>
-                <input type="password" th:field="*{confirmPassword}"
-                       placeholder="Confirm Password"
-                       id="inputConfirmPassword"
-                       class="form-control" aria-describedby="confirmPasswordHelpInline"
-                       required>
-                <small style="color: red" th:each="error : ${#fields.errors('confirmPassword')}"
+                <label for="inputNewPassword">New Password</label>
+                <input type="password" th:field="*{newPassword}"
+                       placeholder="Confirm Password" id="inputNewPassword" class="form-control"  required>
+                <small style="color: red" th:each="error : ${#fields.errors('newPassword')}"
                        th:text="${error}"></small>
             </div>
             <div class="col-md-4 mb-3">
@@ -66,15 +60,10 @@
         <div class="form-row">
             <div class="col-md-4 mb-3">
                 <label for="inputCity">City</label>
-                <select th:field="*{city.id}" class="form-control" id="inputCity"
-                        placeholder="City"
-                        required>
+                <select th:field="*{cityId}" class="form-control" id="inputCity" placeholder="City">
                     <th:block th:each="city : ${cityModels}">
                         <option th:value="${city.id}" th:text="${city.cityName}"></option>
                     </th:block>
-                    <div class="invalid-feedback">
-                        Please provide a valid city.
-                    </div>
                 </select>
             </div>
             <div class="col-md-2 mb-3">

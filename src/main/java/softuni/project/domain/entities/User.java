@@ -12,7 +12,7 @@ public class User extends BaseEntity implements UserDetails {
 
     private String username;
     private String password;
-    private String fullName;
+    private String firstName;
     private String email;
     private String phoneNumber;
     private Integer age;
@@ -41,12 +41,12 @@ public class User extends BaseEntity implements UserDetails {
     }
 
     @Column(name = "full_name", nullable = false, unique = true)
-    public String getFullName() {
-        return fullName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     @Column(name = "email", nullable = false)
