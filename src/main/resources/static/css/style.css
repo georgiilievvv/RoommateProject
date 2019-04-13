@@ -1,16 +1,16 @@
 
-.footer{
+.footer {
     background-color: #2b3740;
     color: #e6e3e1;
 }
 
-.modal-title{
+.modal-title {
     color: #343a40;
     padding-bottom: 34px;
     padding-top: -20px;
 }
 
-div.modal-content.container{
+div.modal-content.container {
     padding-top: 30px;
     padding-bottom: 30px;
 }
@@ -21,15 +21,9 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0;
 }
 
-.side-nav.col-2{
-    background-color: rgb(42, 58, 85);
-    color: rgba(255, 252, 250, 0.74);
-    padding-right: 0;
-}
-
-.side-nav.nav-link{
-    padding-left: 12%;
-    border-radius: 0 0;
+nav li{
+    padding-right: 5px;
+    padding-left: 5px;
 }
 
 .nav-pills .nav-link.active {
@@ -37,75 +31,66 @@ input[type=number]::-webkit-outer-spin-button {
     color: #f7f4f2;
 }
 
-.align-text-bottom{
+.align-text-bottom {
     padding-top: 5%;
 }
 
-.align-text-bottom h5{
+.align-text-bottom h5 {
     margin-bottom: 0;
 }
 
-a.top-side-nav, a.top-side-nav.nav-link.side-nav:hover{
-    padding-bottom: 5%;
-    padding-top: 7%;
-    background-color: #24344b;
-    color: #b8b5b3;
-}
-
-a.side-nav.nav-link:hover{
-    flex: 0 0 25%;
-    background-color: #366598;
-    color: #b8b5b3;
-}
-
-.login-content{
+.login-content {
     padding-left: 13%;
     margin-bottom: 30px;
 }
 
-.center-button{
+.center-button {
     display: flex;
     justify-content: center;
 }
 
-ul.nav-tabs{
+ul.nav-tabs {
     padding-left: 35%;
 }
 
-.reg-button{
+.reg-button {
     border-color: rgba(34, 62, 91, 0.98);
     background-color: rgba(47, 68, 91, 0.99);
 }
 
-.register-modal{
+.register-modal {
     padding: 50px;
 }
 
-.nav-title{
+.nav-title {
     color: #E2DFDD;
     font-family: Lobster, serif;
     font-size: 30px;
 }
 
-.navbar{
+.navbar {
     background-color: #2b3740;
+    border-color: #2b3740;
 }
 
-.nav-link{
+.nav-link {
     color: #e2dfdd;
 }
 
 .form-dark .font-small {
-    font-size: 0.8rem; }
+    font-size: 0.8rem;
+}
 
 .form-dark [type="radio"] + label,
 .form-dark [type="checkbox"] + label {
-    font-size: 0.8rem; }
+    font-size: 0.8rem;
+}
 
 .form-dark [type="checkbox"] + label:before {
     top: 2px;
     width: 15px;
-    height: 15px; }
+    height: 15px;
+}
 
 .divider-vertical {
     border-color: #4d545a;
@@ -116,11 +101,11 @@ ul.nav-tabs{
     border-right: 1px solid #ffffff;
 }
 
-a.nav-link.btn:active{
+a.nav-link.btn:active {
     background-color: transparent;
 }
 
-button.nav-link.btn:active{
+button.nav-link.btn:active {
     background-color: #383e44;
 }
 
@@ -129,19 +114,82 @@ button.nav-link.btn:active{
     box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.25);
 }
 
-.button-margin{
+.button-margin {
     margin-top: 29px;
     left: 19px;
 }
 
-#guest-landlord-container{
+#guest-landlord-container {
     padding-right: 5%;
     padding-left: 5%;
 }
 
-.card-img-top{
+.card-img-top {
     height: 200px;
     width: 100%;
     background-size: cover;
     background: no-repeat 50% 50%;
+}
+
+.side-nav.col-2 {
+    background-color: rgb(42, 58, 85);
+    color: rgba(255, 252, 250, 0.74);
+    padding-right: 0;
+}
+
+.side-nav.nav-link {
+    padding-left: 12%;
+    border-radius: 0 0;
+}
+
+a.top-side-nav, a.top-side-nav.nav-link.side-nav:hover {
+    padding-bottom: 5%;
+    padding-top: 7%;
+    background-color: #24344b;
+    color: #b8b5b3;
+}
+
+a.side-nav.nav-link:hover {
+    flex: 0 0 25%;
+    background-color: #366598;
+    color: #b8b5b3;
+}
+
+.border-right {
+    border-right: 1px solid rgba(43, 55, 64, 0.91) !important
+}
+
+.cid-qyvcqB36eR {
+    padding-top: 235px;
+    padding-bottom: 235px;
+    background-image: url(/img/1018_STD_Roommates_Feature_Final.jpg);
+}
+
+.about-us-paragraph-header {
+    font-style: italic;
+    font-size: xx-large;
+    color: #343a40;
+    padding: 20px;
+}
+
+.about-us-paragraph-content {
+    font-family: Georgia, serif;
+    font-size: larger;
+    color: #202326;
+}
+
+.about-us-page{
+    padding-bottom: 20px;
+    padding-top: 50px;
+}
+
+.logout-icon {
+    width: 30px;
+    height: 30px;
+    background-image: url(/img/269181.svg);
+}
+
+li a img{
+    width: 25px;
+    padding-bottom: 3px;
 }

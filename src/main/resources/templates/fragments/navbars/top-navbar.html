@@ -1,30 +1,38 @@
 <th:block th:fragment>
 
-    <nav class="navbar navbar-expand-lg " style="margin-inside: 20px">
+    <nav class="navbar navbar-expand-lg border-bottom" style="margin-inside: 20px">
         <div class="container">
             <th:block sec:authorize="isAnonymous()">
-                <a class="navbar-brand h4" th:href="@{/}">
+                <a class="navbar-brand h4" id="menu-toggle" th:href="@{/}">
                     <span class="nav-title">Roomster</span>
                 </a>
             </th:block>
             <th:block sec:authorize="isAuthenticated()">
-                <a class="navbar-brand h4" th:href="@{/}">
+                <a class="navbar-brand h4" id="menu-toggle" th:href="@{/home}">
                     <span class="nav-title">Roomster</span>
                 </a>
             </th:block>
 
-            <div class="nav justify-content-end" id="navbarSupportedContent">
-                <ul class="navbar-nav">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <img style="height: 50px; width: 50px; display: block;"
+                     src="https://pngimage.net/wp-content/uploads/2018/06/white-menu-icon-png-8.png">
+            </button>
+
+            <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                     <th:block sec:authorize="isAnonymous()">
-                        <h5>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="modal" data-target="#login-modal"
-                                   href="#login">Login</a>
-                            </li>
-                        </h5>
                         <li class="nav-item">
-                            <h5><a class="nav-link" data-toggle="modal" data-target="#register-modal"
-                                   href="#register">Register</a></h5>
+                            <h5>
+                                <a class="nav-link" data-toggle="modal"
+                                   data-target="#login-modal" href="#login">Login</a>
+                            </h5>
+                        </li>
+                        <li class="nav-item">
+                            <h5>
+                                <a class="nav-link" data-toggle="modal"
+                                   data-target="#register-modal" href="#register">Register</a>
+                            </h5>
                         </li>
                         <th:block th:include="~{fragments/forms/login}"></th:block>
                         <th:block th:include="~{fragments/forms/register}"></th:block>
@@ -32,12 +40,12 @@
                     <th:block sec:authorize="isAuthenticated()">
                         <li class="nav-item">
                             <h5>
-                                <a href="/about-us" class="nav-link">About us</a>
+                                <a href="/about-us" class="nav-link"><img src="/img/info.png" width="25px"> About us</a>
                             </h5>
                         </li>
                         <li class="nav-item">
                             <h5>
-                                <a href="/logout" class="nav-link">Logout</a>
+                                <a href="/logout" class="nav-link"><img src="/img/logout.png"> Logout</a>
                             </h5>
                         </li>
                     </th:block>

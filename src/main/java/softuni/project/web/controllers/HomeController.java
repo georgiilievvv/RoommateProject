@@ -96,9 +96,23 @@ public class HomeController {
         return modelAndView;
     }
 
-    private List<CityServiceModel> getCities() {
+    @GetMapping("/about-us")
+    @PreAuthorize("isAuthenticated()")
+    public ModelAndView aboutUs(ModelAndView modelAndView, Principal principal) {
+
+        modelAndView.addObject("user", this.userService.findUserByUsername(principal.getName()));
+        modelAndView.addObject("view", "about-us");
+
+        modelAndView.setViewName("home");
+
+        return modelAndView;
+    }
+
+        private List<CityServiceModel> getCities() {
         return cityService.findAllCities().stream()
                 .map(c -> modelMapper.map(c, CityServiceModel.class))
                 .collect(Collectors.toList());
     }
+
+
 }
