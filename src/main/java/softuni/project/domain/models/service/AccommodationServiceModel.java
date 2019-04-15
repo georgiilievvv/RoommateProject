@@ -1,11 +1,9 @@
 package softuni.project.domain.models.service;
 
-import softuni.project.domain.entities.User;
-
 import java.math.BigDecimal;
 import java.util.List;
 
-public class HouseServiceModel extends BaseServiceModel{
+public class AccommodationServiceModel extends BaseServiceModel{
 
     private UserServiceModel owner;
     private CityServiceModel city;
@@ -22,11 +20,15 @@ public class HouseServiceModel extends BaseServiceModel{
     private	boolean hasWashingMachine;
     private String imageUrl;
     private	String moreInfo;
+    private boolean hasDoorman;
+    private boolean hasElevator;
+    private int floor;
     private boolean hasYard;
     private Double yardQuadrature;
     private List<UserServiceModel> candidates;
 
-    public HouseServiceModel() {
+
+    public AccommodationServiceModel() {
     }
 
     public UserServiceModel getOwner() {
@@ -93,7 +95,7 @@ public class HouseServiceModel extends BaseServiceModel{
         this.numberOfBathrooms = numberOfBathrooms;
     }
 
-    public boolean isHasTV() {
+    public boolean hasTV() {
         return hasTV;
     }
 
@@ -101,7 +103,7 @@ public class HouseServiceModel extends BaseServiceModel{
         this.hasTV = hasTV;
     }
 
-    public boolean isHasWifi() {
+    public boolean hasWifi() {
         return hasWifi;
     }
 
@@ -117,7 +119,7 @@ public class HouseServiceModel extends BaseServiceModel{
         Furnished = furnished;
     }
 
-    public boolean isHasRefrigerator() {
+    public boolean hasRefrigerator() {
         return hasRefrigerator;
     }
 
@@ -125,7 +127,7 @@ public class HouseServiceModel extends BaseServiceModel{
         this.hasRefrigerator = hasRefrigerator;
     }
 
-    public boolean isHasWashingMachine() {
+    public boolean hasWashingMachine() {
         return hasWashingMachine;
     }
 
@@ -149,7 +151,31 @@ public class HouseServiceModel extends BaseServiceModel{
         this.moreInfo = moreInfo;
     }
 
-    public boolean isHasYard() {
+    public boolean hasDoorman() {
+        return hasDoorman;
+    }
+
+    public void setHasDoorman(boolean hasDoorman) {
+        this.hasDoorman = hasDoorman;
+    }
+
+    public boolean hasElevator() {
+        return hasElevator;
+    }
+
+    public void setHasElevator(boolean hasElevator) {
+        this.hasElevator = hasElevator;
+    }
+
+    public int getFloor() {
+        return floor;
+    }
+
+    public void setFloor(int floor) {
+        this.floor = floor;
+    }
+
+    public boolean hasYard() {
         return hasYard;
     }
 

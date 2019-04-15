@@ -16,7 +16,7 @@ public class Apartment extends Accommodation {
     }
 
     @Column(name = "has_doorman", nullable = false)
-    public boolean isHasDoorman() {
+    public boolean hasDoorman() {
         return hasDoorman;
     }
 
@@ -25,7 +25,7 @@ public class Apartment extends Accommodation {
     }
 
     @Column(name = "has_elevator", nullable = false)
-    public boolean isHasElevator() {
+    public boolean hasElevator() {
         return hasElevator;
     }
 

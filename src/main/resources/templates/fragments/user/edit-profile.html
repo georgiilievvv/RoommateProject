@@ -1,7 +1,7 @@
 <div class="container register-modal">
     <h1 class="modal-title w-100 text-center white-text font-weight-bold" id="myModalLabel">
         Edit Profile</h1>
-    <form class="needs-validation" th:action="@{/edit-profile}" method="post"
+    <form class="needs-validation" th:action="@{/edit-profile}" enctype="multipart/form-data" method="post"
           th:object="${editUserModel}">
         <hr class="hr"/>
         <div class="form-row">
@@ -26,24 +26,24 @@
                     <input type="email" th:field="*{email}" class="form-control"
                            id="validationCustomEmail"
                            placeholder="Email" required>
-                    <small style="color: red" th:each="error : ${#fields.errors('email')}"
-                           th:text="${error}"></small>
                 </div>
+                <small style="color: red" th:each="error : ${#fields.errors('email')}"
+                       th:text="${error}"></small>
             </div>
         </div>
         <div class="form-row">
             <div class="col-md-4 mb-3">
-                <label for="inputPassword">Old Password</label>
-                <input type="password" th:field="*{oldPassword}" placeholder="Old Password"
-                       id="inputOldPassword"
-                       class="form-control" aria-describedby="passwordHelpInline" required>
-                <small style="color: red" th:each="error : ${#fields.errors('oldPassword')}"
+                <label for="inputCurrentPassword">Current Password</label>
+                <input type="password" th:field="*{password}" placeholder="Current Password"
+                       id="inputCurrentPassword"
+                       class="form-control" aria-describedby="inputPassword">
+                <small style="color: red" th:each="error : ${#fields.errors('password')}"
                        th:text="${error}"></small>
             </div>
             <div class="col-md-4 mb-3">
                 <label for="inputNewPassword">New Password</label>
                 <input type="password" th:field="*{newPassword}"
-                       placeholder="Confirm Password" id="inputNewPassword" class="form-control"  required>
+                placeholder="New Password" id="inputNewPassword" class="form-control">
                 <small style="color: red" th:each="error : ${#fields.errors('newPassword')}"
                        th:text="${error}"></small>
             </div>
@@ -81,13 +81,13 @@
                 <small style="color: red" th:each="error : ${#fields.errors('age')}"
                        th:text="${error}"></small>
             </div>
-            <div class="col-md-2">
-                <label for="add-product-image">Profile Picture</label>
-                <input type="file" class="btn" id="add-product-image" name="image">
+            <div class="col-md-4">
+                <label for="add-product-image" class="font-weight-bold">Profile Picture</label>
+                <input type="file" class="form-control-file" id="add-product-image" th:field="*{image}">
             </div>
         </div>
 
-        <th:block sec:authorize="hasAuthority('ROLE_LANDLORD')">
+        <th:block sec:authorize="hasAuthority('ROLE_LANDLORD') && !hasAuthority('ROLE_ADMIN')">
             <div class="tab-pane fade show active" id="pills-guest-landlord-form" role="tabpanel"
                  aria-labelledby="pills-home-tab">
                 <div id="guest-landlord-container" class="form-row landlord-form container">
@@ -112,7 +112,7 @@
                 </div>
             </div>
         </th:block>
-        <th:block sec:authorize="hasAuthority('ROLE_GUEST')">
+        <th:block sec:authorize="hasAuthority('ROLE_GUEST') && !hasAuthority('ROLE_ADMIN')">
             <div class="col-md-12 mb-3"><label for="inputPreferences">Preferences</label><textarea
                     th:field="*{preferences}" placeholder="Preferences" id="inputPreferences"
                     class="form-control" required></textarea>

@@ -17,6 +17,7 @@ public class User extends BaseEntity implements UserDetails {
     private String phoneNumber;
     private Integer age;
     private Gender gender;
+    private String imageUrl;
     private City city;
     private Set<Role> authorities;
     private String roommateGender;
@@ -94,6 +95,15 @@ public class User extends BaseEntity implements UserDetails {
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    @Column(name = "image_url")
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     @ManyToOne()

@@ -1,20 +1,22 @@
-package softuni.project.domain.models.service;
-
-import softuni.project.domain.entities.User;
+package softuni.project.domain.models.binding;
 
 import java.math.BigDecimal;
 
-public class ApartmentServiceModel extends BaseServiceModel{
+public class AccommodationAddBindingModel {
 
-    private User owner;
-    private CityServiceModel city;
+    private String owner;
+    private String cityId;
     private	String address;
     private	Double quadrature;
     private BigDecimal rentPerMonth;
-    private ParkingServiceModel parking;
+    private Integer numberOfParkingSpots;
+    private boolean isIndoor;
+    private boolean isGuarded;
+    private boolean hasCameras;
     private	Integer numberOfRooms;
     private	Integer numberOfBathrooms;
     private	boolean hasTV;
+    private	boolean hasPet;
     private	boolean hasWifi;
     private	boolean Furnished;
     private	boolean hasRefrigerator;
@@ -24,24 +26,26 @@ public class ApartmentServiceModel extends BaseServiceModel{
     private boolean hasDoorman;
     private boolean hasElevator;
     private int floor;
+    private boolean hasYard;
+    private Double yardQuadrature;
 
-    public ApartmentServiceModel() {
+    public AccommodationAddBindingModel() {
     }
 
-    public User getOwner() {
+    public String getOwner() {
         return owner;
     }
 
-    public void setOwner(User owner) {
+    public void setOwner(String owner) {
         this.owner = owner;
     }
 
-    public CityServiceModel getCity() {
-        return city;
+    public String getCityId() {
+        return cityId;
     }
 
-    public void setCity(CityServiceModel city) {
-        this.city = city;
+    public void setCityId(String cityId) {
+        this.cityId = cityId;
     }
 
     public String getAddress() {
@@ -68,12 +72,36 @@ public class ApartmentServiceModel extends BaseServiceModel{
         this.rentPerMonth = rentPerMonth;
     }
 
-    public ParkingServiceModel getParking() {
-        return parking;
+    public Integer getNumberOfParkingSpots() {
+        return numberOfParkingSpots;
     }
 
-    public void setParking(ParkingServiceModel parking) {
-        this.parking = parking;
+    public void setNumberOfParkingSpots(Integer numberOfParkingSpots) {
+        this.numberOfParkingSpots = numberOfParkingSpots;
+    }
+
+    public boolean isIndoor() {
+        return isIndoor;
+    }
+
+    public void setIndoor(boolean indoor) {
+        isIndoor = indoor;
+    }
+
+    public boolean isGuarded() {
+        return isGuarded;
+    }
+
+    public void setGuarded(boolean guarded) {
+        isGuarded = guarded;
+    }
+
+    public boolean hasCameras() {
+        return hasCameras;
+    }
+
+    public void setHasCameras(boolean hasCameras) {
+        this.hasCameras = hasCameras;
     }
 
     public Integer getNumberOfRooms() {
@@ -92,7 +120,7 @@ public class ApartmentServiceModel extends BaseServiceModel{
         this.numberOfBathrooms = numberOfBathrooms;
     }
 
-    public boolean isHasTV() {
+    public boolean hasTV() {
         return hasTV;
     }
 
@@ -100,7 +128,15 @@ public class ApartmentServiceModel extends BaseServiceModel{
         this.hasTV = hasTV;
     }
 
-    public boolean isHasWifi() {
+    public boolean hasPet() {
+        return hasPet;
+    }
+
+    public void setHasPet(boolean hasPet) {
+        this.hasPet = hasPet;
+    }
+
+    public boolean hasWifi() {
         return hasWifi;
     }
 
@@ -116,7 +152,7 @@ public class ApartmentServiceModel extends BaseServiceModel{
         Furnished = furnished;
     }
 
-    public boolean isHasRefrigerator() {
+    public boolean hasRefrigerator() {
         return hasRefrigerator;
     }
 
@@ -124,7 +160,7 @@ public class ApartmentServiceModel extends BaseServiceModel{
         this.hasRefrigerator = hasRefrigerator;
     }
 
-    public boolean isHasWashingMachine() {
+    public boolean hasWashingMachine() {
         return hasWashingMachine;
     }
 
@@ -148,7 +184,7 @@ public class ApartmentServiceModel extends BaseServiceModel{
         this.moreInfo = moreInfo;
     }
 
-    public boolean isHasDoorman() {
+    public boolean hasDoorman() {
         return hasDoorman;
     }
 
@@ -156,7 +192,7 @@ public class ApartmentServiceModel extends BaseServiceModel{
         this.hasDoorman = hasDoorman;
     }
 
-    public boolean isHasElevator() {
+    public boolean hasElevator() {
         return hasElevator;
     }
 
@@ -170,5 +206,21 @@ public class ApartmentServiceModel extends BaseServiceModel{
 
     public void setFloor(int floor) {
         this.floor = floor;
+    }
+
+    public boolean hasYard() {
+        return hasYard;
+    }
+
+    public void setHasYard(boolean hasYard) {
+        this.hasYard = hasYard;
+    }
+
+    public Double getYardQuadrature() {
+        return yardQuadrature;
+    }
+
+    public void setYardQuadrature(Double yardQuadrature) {
+        this.yardQuadrature = yardQuadrature;
     }
 }

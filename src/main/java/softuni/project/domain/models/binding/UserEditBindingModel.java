@@ -1,21 +1,18 @@
 package softuni.project.domain.models.binding;
 
-import org.hibernate.validator.constraints.Length;
-
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import org.springframework.web.multipart.MultipartFile;
 
 public class UserEditBindingModel {
 
     private String username;
     private String firstName;
     private String email;
-    private String oldPassword;
+    private String password;
     private String newPassword;
     private String phoneNumber;
     private Integer age;
     private String gender;
+    private MultipartFile image;
     private String cityId;
     private String conditions;
     private String roommateGender;
@@ -33,9 +30,6 @@ public class UserEditBindingModel {
         this.username = username;
     }
 
-    @NotNull(message = "Username cannot be null.")
-    @NotEmpty(message = "Username cannot be empty.")
-    @Length(min = 2, message = "Username must be at least 2 symbols long.")
     public String getFirstName() {
         return firstName;
     }
@@ -44,9 +38,6 @@ public class UserEditBindingModel {
         this.firstName = firstName;
     }
 
-    @NotNull(message = "Email cannot be null.")
-    @NotEmpty(message = "Email cannot be empty.")
-    @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$", message = "Please enter a valid email.")
     public String getEmail() {
         return email;
     }
@@ -55,19 +46,14 @@ public class UserEditBindingModel {
         this.email = email;
     }
 
-    @NotNull(message = "Password cannot be null.")
-    @NotEmpty(message = "Password cannot be empty.")
-    @Length(min = 4, max = 20, message = "Password must be between 4 and 20 symbols long.")
-    public String getOldPassword() {
-        return oldPassword;
+    public String getPassword() {
+        return password;
     }
 
-    public void setOldPassword(String oldPassword) {
-        this.oldPassword = oldPassword;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    @NotNull(message = "Password cannot be null.")
-    @NotEmpty(message = "Password cannot be empty.")
     public String getNewPassword() {
         return newPassword;
     }
@@ -76,8 +62,6 @@ public class UserEditBindingModel {
         this.newPassword = newPassword;
     }
 
-    @NotNull(message = "Phone number cannot be null.")
-    @NotEmpty(message = "Phone number cannot be empty.")
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -100,6 +84,14 @@ public class UserEditBindingModel {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public MultipartFile getImage() {
+        return image;
+    }
+
+    public void setImage(MultipartFile image) {
+        this.image = image;
     }
 
     public String getCityId() {
@@ -127,7 +119,6 @@ public class UserEditBindingModel {
     }
 
     public String getPreferences() {
-
         return preferences;
     }
 

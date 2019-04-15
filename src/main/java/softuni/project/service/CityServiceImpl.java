@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import softuni.project.domain.entities.City;
+import softuni.project.domain.entities.Role;
 import softuni.project.domain.models.service.CityServiceModel;
 import softuni.project.domain.models.view.CityViewModel;
 import softuni.project.repository.CityRepository;
@@ -26,7 +27,18 @@ public class CityServiceImpl implements CityService {
     }
 
     @Override
+    public void seedCitiesInDb() {
+        this.cityRepository.saveAndFlush(new City("Sofia"));
+        this.cityRepository.saveAndFlush(new City("Plovdiv"));
+        this.cityRepository.saveAndFlush(new City("Burgas"));
+        this.cityRepository.saveAndFlush(new City("Varna"));
+    }
+
+    @Override
     public List<CityServiceModel> findAllCities() {
+        if (this.cityRepository.count() == 0) {
+            seedCitiesInDb();
+        }
         return this.cityRepository.findAll().stream()
                 .map(c -> modelMapper.map(c, CityServiceModel.class))
                 .collect(Collectors.toList());

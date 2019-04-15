@@ -15,6 +15,7 @@ public class Accommodation extends BaseEntity{
     private	Integer numberOfRooms;
     private	Integer numberOfBathrooms;
     private	boolean hasTV;
+    private	boolean hasPet;
     private	boolean hasWifi;
     private	boolean Furnished;
     private	boolean hasRefrigerator;
@@ -108,8 +109,17 @@ public class Accommodation extends BaseEntity{
     }
 
     @Column(name = "has_tv", nullable = false)
-    public boolean isHasTV() {
+    public boolean hasTV() {
         return hasTV;
+    }
+
+    public boolean hasPet() {
+        return hasPet;
+    }
+
+    @Column(name = "has_pet", nullable = false)
+    public void setHasPet(boolean hasPet) {
+        this.hasPet = hasPet;
     }
 
     public void setHasTV(boolean hasTV) {
@@ -117,7 +127,7 @@ public class Accommodation extends BaseEntity{
     }
 
     @Column(name = "has_wifi", nullable = false)
-    public boolean isHasWifi() {
+    public boolean hasWifi() {
         return hasWifi;
     }
 
@@ -135,7 +145,7 @@ public class Accommodation extends BaseEntity{
     }
 
     @Column(name = "has_refrigerator", nullable = false)
-    public boolean isHasRefrigerator() {
+    public boolean hasRefrigerator() {
         return hasRefrigerator;
     }
 
@@ -144,7 +154,7 @@ public class Accommodation extends BaseEntity{
     }
 
     @Column(name = "has_washing_machine", nullable = false)
-    public boolean isHasWashingMachine() {
+    public boolean hasWashingMachine() {
         return hasWashingMachine;
     }
 

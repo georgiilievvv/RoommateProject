@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface CityService {
 
+    void seedCitiesInDb();
+
     List<CityServiceModel> findAllCities();
 
     CityServiceModel findCityById(String Id);

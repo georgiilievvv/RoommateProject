@@ -13,7 +13,7 @@ public interface UserService extends UserDetailsService {
 
     UserServiceModel findUserByEmail(String email);
 
-    UserServiceModel editUserProfile(UserServiceModel userServiceModel, String oldPassword);
+    UserServiceModel editUserProfile(UserServiceModel userServiceModel);
 
     List<UserServiceModel> findAllUsers();
 

@@ -18,7 +18,7 @@ public class House extends Accommodation {
     }
 
     @Column(name = "has_yard")
-    public boolean isHasYard() {
+    public boolean hasYard() {
         return hasYard;
     }
 

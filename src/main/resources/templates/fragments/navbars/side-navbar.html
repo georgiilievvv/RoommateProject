@@ -25,7 +25,8 @@
        href="/guest/marked-accommodations">Marked Accommodations</a>
 </th:block>
 <th:block sec:authorize="hasRole('ROLE_LANDLORD') && !hasRole('ROLE_ADMIN')">
-    <a class="list-group-item list-group-item-action bg-light" id="v-pills-approved-roommates-tab" href="/landlord/approved-roommates">Approved Roommates</a>
+    <a class="list-group-item list-group-item-action " id="v-pills-my-home-tab" href="/landlord/my-home">My Home</a>
+    <a class="list-group-item list-group-item-action " id="v-pills-approved-roommates-tab" href="/landlord/approved-roommates">Approved Roommates</a>
 </th:block>
 <th:block sec:authorize="hasRole('ROLE_ADMIN')">
     <a class="list-group-item list-group-item-action bg-light" id="v-pills-moderator-users-tab" href="/moderator/users">Users</a>

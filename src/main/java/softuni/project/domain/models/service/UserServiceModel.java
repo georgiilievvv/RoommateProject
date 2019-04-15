@@ -2,7 +2,7 @@ package softuni.project.domain.models.service;
 
 import java.util.Set;
 
-public class UserServiceModel {
+public class UserServiceModel extends BaseServiceModel {
 
     private String username;
     private String firstName;
@@ -10,6 +10,7 @@ public class UserServiceModel {
     private String password;
     private String confirmPassword;
     private String phoneNumber;
+    private String imageUrl;
     private Integer age;
     private String gender;
     private CityServiceModel city;
@@ -17,6 +18,7 @@ public class UserServiceModel {
     private boolean isAccountNonLocked;
     private boolean isCredentialsNonExpired;
     private boolean isEnabled;
+    private AccommodationServiceModel accommodation;
     private Set<RoleServiceModel> authorities;
 
     public Set<RoleServiceModel> getAuthorities() {
@@ -80,6 +82,14 @@ public class UserServiceModel {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public Integer getAge() {
@@ -152,6 +162,14 @@ public class UserServiceModel {
 
     public void setRoommateGender(String roommateGender) {
         this.roommateGender = roommateGender;
+    }
+
+    public AccommodationServiceModel getAccommodation() {
+        return accommodation;
+    }
+
+    public void setAccommodation(AccommodationServiceModel accommodation) {
+        this.accommodation = accommodation;
     }
 
     public String getConditions() {

@@ -37,25 +37,23 @@ public class UserServiceImpl implements UserService {
         if (this.userRepository.count() == 0) {
             userServiceModel.setAuthorities(this.roleService.findAllRoles());
         } else {
-            userServiceModel.setAuthorities(new LinkedHashSet<>());
+            if (userServiceModel.getAuthorities() == null) {
+                userServiceModel.setAuthorities(new LinkedHashSet<>());
 
-            if (userServiceModel.getPreferences() != null) {
-                userServiceModel.getAuthorities().add(this.roleService.findByAuthority("ROLE_GUEST"));
-                userServiceModel.getAuthorities().add(this.roleService.findByAuthority("ROLE_USER"));
-            }else {
-                if (userServiceModel.getRoommateGender().equals("")){
-                    userServiceModel.setRoommateGender(null);
+                if (userServiceModel.getPreferences() != null) {
+                    userServiceModel.getAuthorities().add(this.roleService.findByAuthority("ROLE_GUEST"));
+                } else {
+                    if (userServiceModel.getRoommateGender().equals("")) {
+                        userServiceModel.setRoommateGender(null);
+                    }
+                    userServiceModel.getAuthorities().add(this.roleService.findByAuthority("ROLE_LANDLORD"));
                 }
-                userServiceModel.getAuthorities().add(this.roleService.findByAuthority("ROLE_LANDLORD"));
-                userServiceModel.getAuthorities().add(this.roleService.findByAuthority("ROLE_USER"));
             }
         }
 
-        User user = this.modelMapper.map(userServiceModel, User.class);
-        user.setPassword(this.bCryptPasswordEncoder.encode(userServiceModel.getPassword()));
-
-        return this.modelMapper.map(this.userRepository.saveAndFlush(user), UserServiceModel.class);
+       return saveUserEntity(userServiceModel);
     }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return this.userRepository
@@ -78,20 +76,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserServiceModel editUserProfile(UserServiceModel userServiceModel, String oldPassword) {
-        User user = this.userRepository.findByUsername(userServiceModel.getUsername())
-                .orElseThrow(()-> new UsernameNotFoundException("Username not found!"));
-
-        if (!this.bCryptPasswordEncoder.matches(oldPassword, user.getPassword())) {
-            throw new IllegalArgumentException("Incorrect password!");
-        }
-
-        user.setPassword(!"".equals(userServiceModel.getPassword()) ?
-                this.bCryptPasswordEncoder.encode(userServiceModel.getPassword()) :
-                user.getPassword());
-        user.setEmail(userServiceModel.getEmail());
-
-        return this.modelMapper.map(this.userRepository.saveAndFlush(user), UserServiceModel.class);
+    public UserServiceModel editUserProfile(UserServiceModel userServiceModel) {
+       return saveUserEntity(userServiceModel);
     }
 
     @Override
@@ -125,6 +111,13 @@ public class UserServiceImpl implements UserService {
         }
 
         this.userRepository.saveAndFlush(this.modelMapper.map(userServiceModel, User.class));
+    }
+
+    private UserServiceModel saveUserEntity(UserServiceModel userServiceModel){
+        User user = this.modelMapper.map(userServiceModel, User.class);
+        user.setPassword(this.bCryptPasswordEncoder.encode(userServiceModel.getPassword()));
+
+        return this.modelMapper.map(this.userRepository.saveAndFlush(user), UserServiceModel.class);
     }
 
 }
