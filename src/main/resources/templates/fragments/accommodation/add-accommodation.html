@@ -1,5 +1,5 @@
 <div class="container register-modal">
-    <h1 class="modal-title w-100 text-center white-text font-weight-bold" id="myModalLabel">
+    <h1 class="modal-title w-100 text-center white-text font-weight-bold">
         My Home</h1>
     <form class="needs-validation" th:action="@{/add-accommodation}" enctype="multipart/form-data" method="post"
           th:object="${accommodationModel}">
@@ -30,96 +30,129 @@
             </div>
         </div>
         <div class="form-row">
-            <div class="col-md-2 mb-3">
-                <label for="inputRentPerMonth">Rent Per Month</label>
-                <input type="number" th:field="*{rentPerMonth}" placeholder="Rent Per Month"
-                       id="inputRentPerMonth" class="form-control" required>
-                <small style="color: red" th:each="error : ${#fields.errors('rentPerMonth')}"
-                       th:text="${error}"></small>
+            <div class="col-md-1 mb-3">
+                <div class="custom-control custom-checkbox mt-4 ">
+                    <input type="checkbox" class="custom-control-input" id="inputHasTV">
+                    <label class="custom-control-label" for="inputHasTV">TV</label>
+                </div>
+                <div class="custom-control custom-checkbox mt-4">
+                    <input type="checkbox" class="custom-control-input" id="inputHasWifi">
+                    <label class="custom-control-label" for="inputHasWifi">Wifi</label>
+                </div>
+                <div class="custom-control custom-checkbox mt-4">
+                    <input type="checkbox" class="custom-control-input" id="inputHasAPet">
+                    <label class="custom-control-label" for="inputHasAPet">A Pet</label>
+                </div>
             </div>
             <div class="col-md-2 mb-3">
+                <div class="custom-control custom-checkbox mt-4">
+                    <input type="checkbox" class="custom-control-input" id="inputHasRefrigerator">
+                    <label class="custom-control-label" for="inputHasRefrigerator">Refrigerator</label>
+                </div>
+                <div class="custom-control custom-checkbox mt-4 ">
+                    <input type="checkbox" class="custom-control-input" id="inputHasWashingMachine">
+                    <label class="custom-control-label" for="inputHasWashingMachine">Washing Machine</label>
+                </div>
+                <div class="custom-control custom-checkbox mt-4 ">
+                    <input type="checkbox" class="custom-control-input" id="inputIsFurnished">
+                    <label class="custom-control-label" for="inputIsFurnished">Is Furnished</label>
+                </div>
+            </div>
+            <div class="col-md-2 ml-2 mb-3">
                 <label for="inputNumberOfRooms">Number Of Rooms</label>
                 <input type="number" th:field="*{numberOfRooms}" placeholder="Number Of Rooms"
                        id="inputNumberOfRooms" class="form-control" required>
                 <small style="color: red" th:each="error : ${#fields.errors('numberOfRooms')}"
                        th:text="${error}"></small>
-            </div>
-            <div class="col-md-2 mb-3">
-                <label for="inputNumberOfBathrooms">Number Of Bathrooms</label>
+                <label for="inputNumberOfBathrooms">Bathrooms</label>
                 <input type="number" th:field="*{numberOfBathrooms}" placeholder="Number Of Bathrooms"
                        id="inputNumberOfBathrooms" class="form-control" required>
+            </div>
+            <div class="col-md-2 ml-2 mb-3">
+                <label for="inputRentPerMonth">Rent Per Month</label>
+                <input type="number" th:field="*{rentPerMonth}" placeholder="Rent Per Month"
+                       id="inputRentPerMonth" class="form-control" required>
+                <small style="color: red" th:each="error : ${#fields.errors('rentPerMonth')}"
+                       th:text="${error}"></small>
                 <small style="color: red" th:each="error : ${#fields.errors('numberOfBathrooms')}"
                        th:text="${error}"></small>
+                <button type="button" class=" reg-button btn-primary btn col-12 " id="parking-button"
+                        style="margin-top: 30px">Has Parking
+                </button>
             </div>
-            <div class="col-md-2 mb-3 justify-content-center d-flex">
-                <button type="button" class="button-margin reg-button btn-primary btn ">Has Parking</button>
+            <div id="parking-form" class="form-group row col-md-4 ml-4 mb-3">
+                <div class="col-12 text-center align-middle">
+                    <h3 class="modal-title my-auto font-weight-bold pt-5">
+                        No parking</h3>
+                </div>
             </div>
         </div>
         <div class="form-row">
-            <div class="custom-control custom-checkbox col-md-2 mb-3">
-                <input type="checkbox" class="custom-control-input" id="customCheck1">
-                <label class="custom-control-label" for="customCheck1"><img src="/img/tv.png" width="30"></label>
+            <div class="col-md-4 mb-3 button-margin">
+                <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                    <li class="nav-item btn-primary divider-vertical">
+                        <a class="nav-link btn active" id="pills-guest-tab" data-toggle="pill"
+                           style="width: 65px">House</a>
+                    </li>
+                    <li class="nav-item btn-primary divider-vertical">
+                        <a class="nav-link btn active" id="pills-landlord-tab" data-toggle="pill"
+                           role="tab" aria-controls="pills-guest-landlord-form"
+                           aria-selected="false">Apartment</a>
+                    </li>
+                </ul>
             </div>
+        </div>
 
-            <!--</div>-->
-            <!--<div class="custom-control custom-checkbox">-->
-                <!--<input type="checkbox" class="custom-control-input" id="customCheck1">-->
-                <!--<label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>-->
-            <!--</div>-->
-            <!--<div class="custom-control custom-checkbox">-->
-                <!--<input type="checkbox" class="custom-control-input" id="customCheck1">-->
-                <!--<label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>-->
-            <!--</div>-->
-            <!--<div class="custom-control custom-checkbox">-->
-                <!--<input type="checkbox" class="custom-control-input" id="customCheck1">-->
-                <!--<label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>-->
-            <!--</div>-->
-            <!--<div class="custom-control custom-checkbox">-->
-                <!--<input type="checkbox" class="custom-control-input" id="customCheck1">-->
-                <!--<label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>-->
-            <!--</div>-->
-            <!--<div class="custom-control custom-checkbox">-->
-                <!--<input type="checkbox" class="custom-control-input" id="customCheck1">-->
-                <!--<label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>-->
-            <!--</div>-->
-        <!--</div>-->
+        <hr class="hr"/>
+        <div class="center-button">
+            <button class="btn btn-primary col-3 reg-button" type="submit">Save</button>
+        </div>
+    </form>
+</div>
 
-        <!--<th:block sec:authorize="hasAuthority('ROLE_LANDLORD') && !hasAuthority('ROLE_ADMIN')">-->
-        <!--<div class="tab-pane fade show active" id="pills-guest-landlord-form" role="tabpanel"-->
-        <!--aria-labelledby="pills-home-tab">-->
-        <!--<div id="guest-landlord-container" class="form-row landlord-form container">-->
-        <!--<div class="col-md-9 mb-3">-->
-        <!--<label for="inputConditions">Conditions</label>-->
-        <!--<textarea type="text" th:field="*{conditions}" class="form-control"-->
-        <!--id="inputConditions"-->
-        <!--placeholder="Conditions"-->
-        <!--required></textarea>-->
-        <!--<small style="color: red" th:each="error : ${#fields.errors('conditions')}"-->
-        <!--th:text="${error}"></small>-->
-        <!--</div>-->
-        <!--<div class="col-md-3 mb-3">-->
-        <!--<label for="inputRoommateGender">Roommate Gender</label>-->
-        <!--<select class="custom-select" th:field="*{roommateGender}"-->
-        <!--id="inputRoommateGender">-->
-        <!--<option value="">Male & Female</option>-->
-        <!--<option value="Male">Male</option>-->
-        <!--<option value="Female">Female</option>-->
-        <!--</select>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</th:block>-->
-        <!--<th:block sec:authorize="hasAuthority('ROLE_GUEST') && !hasAuthority('ROLE_ADMIN')">-->
-        <!--<div class="col-md-12 mb-3"><label for="inputPreferences">Preferences</label><textarea-->
-        <!--th:field="*{preferences}" placeholder="Preferences" id="inputPreferences"-->
-        <!--class="form-control" required></textarea>-->
-        <!--<small style="color: red" th:each="error : ${#fields.errors('preferences')}"-->
-        <!--th:text="${error}"></small>-->
-</div>
-<!--</th:block>-->
-<hr class="hr"/>
-<div class="center-button">
-    <button class="btn btn-primary col-3 reg-button" type="submit">Save</button>
-</div>
-</form>
-</div>
+<script>
+    $(document).ready(function () {
+        $('#parking-button').click(function () {
+
+            var parkingButton = this;
+            var parkingForm = $('#parking-form');
+
+            if (parkingButton.classList.contains('active')) {
+                parkingButton.classList.remove('active')
+                parkingForm.empty()
+                parkingForm.append('<div id="no-parking" class="col-12 text-center align-middle">\n' +
+                    '                    <h3 class="modal-title my-auto font-weight-bold pt-5">\n' +
+                    '                        No parking</h3>\n' +
+                    '                </div>')
+
+            } else {
+                parkingButton.classList.add('active')
+                $('#no-parking').fadeOut();
+                parkingForm.empty()
+                parkingForm.append('<div id="has-parking" class="form-row mt-4">\n' +
+                    '                    <div class="col-md-7">\n' +
+                    '                        <label for="inputNumberOfParkingSpots">Number Of Parking Spots</label>\n' +
+                    '                    </div>\n' +
+                    '                    <div class="col-md-5">\n' +
+                    '                        <input type="number" id="inputNumberOfParkingSpots" class="form-control"\n' +
+                    '                               placeholder="Parking Spots">\n' +
+                    '                    </div>\n' +
+                    '                </div>\n' +
+                    '                <div class="form-row mt-2">\n' +
+                    '                    <div class="custom-control custom-checkbox ml-2">\n' +
+                    '                        <input type="checkbox" class="custom-control-input" id="inputIsIndoor">\n' +
+                    '                        <label class="custom-control-label" for="inputIsIndoor">Is Indoor</label>\n' +
+                    '                    </div>\n' +
+                    '                    <div class="custom-control custom-checkbox ml-2">\n' +
+                    '                        <input type="checkbox" class="custom-control-input" id="inputIsGuarded">\n' +
+                    '                        <label class="custom-control-label" for="inputIsGuarded">Is Guarded</label>\n' +
+                    '                    </div>\n' +
+                    '                    <div class="custom-control custom-checkbox ml-2">\n' +
+                    '                        <input type="checkbox" class="custom-control-input" id="inputHasCameras">\n' +
+                    '                        <label class="custom-control-label" for="inputIsGuarded">Has Cameras</label>\n' +
+                    '                    </div>\n' +
+                    '                </div>')
+            }
+        })
+    })
+</script>
