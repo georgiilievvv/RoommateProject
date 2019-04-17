@@ -41,8 +41,8 @@
                 </div>
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
-                        <label for="inputPassword">Password</label>
-                        <input type="password" th:field="*{password}" placeholder="Password" id="inputPassword"
+                        <label for="inputRegisterPassword">Password</label>
+                        <input type="password" th:field="*{password}" placeholder="Password" id="inputRegisterPassword"
                                class="form-control" aria-describedby="passwordHelpInline">
                         <small style="color: red" th:each="error : ${#fields.errors('password')}"
                                th:text="${error}"></small>
@@ -90,20 +90,9 @@
                                th:text="${error}"></small>
                     </div>
                     <div class="col-md-4 mb-3 button-margin">
-                        <ul class="nav nav-pills" id="pills-tab" role="tablist">
-                            <li class="nav-item btn-primary divider-vertical">
-                                <a class="nav-link btn" id="pills-guest-tab" data-toggle="pill"
-                                   href="#pills-guest-landlord-form" style="width: 65px"
-                                   role="tab" aria-controls="pills-guest-landlord-form" aria-selected="true">Guest</a>
-                            </li>
-                            <li class="nav-item btn-primary divider-vertical">
-                                <a class="nav-link btn active" id="pills-landlord-tab" data-toggle="pill"
-                                   href="#pills-guest-landlord-form"
-                                   role="tab" aria-controls="pills-guest-landlord-form"
-                                   aria-selected="false">Landlord</a>
-                            </li>
-                        </ul>
+                        <button type="button" class="reg-button btn-primary btn my-2 mx-1 " id="guest-button">Guest</button>
 
+                        <button type="button" class="reg-button btn-primary btn my-2 mx-1 active" id="landlord-button">Landlord</button>
                     </div>
                 </div>
 
@@ -114,7 +103,7 @@
                             <label for="inputConditions">Conditions</label>
                             <textarea type="text" th:field="*{conditions}" class="form-control" id="inputConditions"
                                       placeholder="Conditions"
-                                     ></textarea>
+                            ></textarea>
                             <small style="color: red" th:each="error : ${#fields.errors('conditions')}"
                                    th:text="${error}"></small>
                         </div>
@@ -147,37 +136,50 @@
 </div>
 <script>
     $(document).ready(function () {
-        $('.nav-pills a').click(function () {
+        $('#guest-button').click(function () {
 
-            var father = $('#guest-landlord-container')
+            var container = $('#guest-landlord-container');
 
-            if (this.text === 'Guest') {
-                father.empty()
-                father.append("<div class=\"col-md-12 mb-3\"><label for=\"inputPreferences\">Preferences</label><textarea name=\"preferences\" placeholder=\"Preferences\" id=\"inputPreferences\" class=\"form-control\"></textarea><small style=\"color: red\" th:each=\"error : ${#fields.errors('preferences')}\" th:text=\"${error}\"></small></div>")
-            } else {
-                father.empty()
-                father.append("<div class=\"col-md-9 mb-3\">\n" +
-                    "                            <label for=\"inputConditions\">Conditions</label>\n" +
-                    "                            <textarea type=\"text\" name=\"conditions\" class=\"form-control\" id=\"inputConditions\"\n" +
-                    "                                      placeholder=\"Conditions\"\n" +
-                    "                                     ></textarea>\n" +
-                    "                            <small style=\"color: red\" th:each=\"error : ${#fields.errors('conditions')}\"\n" +
-                    "                            th:text=\"${error}\"></small>\n" +
-                    "                        </div>"
-                )
+            this.classList.add('active')
+            $('#landlord-button').removeClass('active')
+
+            container.empty();
+            container.append("<div class=\"col-md-12 mb-3\"><label for=\"inputPreferences\">Preferences</label><textarea name=\"preferences\" placeholder=\"Preferences\" id=\"inputPreferences\" class=\"form-control\"></textarea><small style=\"color: red\" th:each=\"error : ${#fields.errors('preferences')}\" th:text=\"${error}\"></small></div>")
+        })
+    })
+
+    $(document).ready(function () {
+        $('#landlord-button').click(function () {
+
+            var container = $('#guest-landlord-container');
+
+            this.classList.add('active')
+            $('#guest-button').removeClass('active')
+
+            container.empty();
+            container.append("<div class=\"col-md-9 mb-3\">\n" +
+                "                            <label for=\"inputConditions\">Conditions</label>\n" +
+                "                            <textarea type=\"text\" name=\"conditions\" class=\"form-control\" id=\"inputConditions\"\n" +
+                "                                      placeholder=\"Conditions\"\n" +
+                "                                     ></textarea>\n" +
+                "                            <small style=\"color: red\" th:each=\"error : ${#fields.errors('conditions')}\"\n" +
+                "                            th:text=\"${error}\"></small>\n" +
+                "                        </div>"
+            );
 
 
-                father.append("<div class=\"col-md-3 mb-3\">\n" +
-                    "                            <label for=\"inputRoommateGender\">Roommate Gender</label>\n" +
-                    "                            <select class=\"custom-select \" name=\"roommateGender\" id=\"inputRoommateGender\">\n" +
-                    "                                <option selected>Male & Female</option>\n" +
-                    "                                <option value=\"Male\">Male</option>\n" +
-                    "                                <option value=\"Female\">Female</option>\n" +
-                    "                            </select>\n" +
-                    "                        </div>")
-            }
+            container.append("<div class=\"col-md-3 mb-3\">\n" +
+                "                            <label for=\"inputRoommateGender\">Roommate Gender</label>\n" +
+                "                            <select class=\"custom-select \" name=\"roommateGender\" id=\"inputRoommateGender\">\n" +
+                "                                <option selected>Male & Female</option>\n" +
+                "                                <option value=\"Male\">Male</option>\n" +
+                "                                <option value=\"Female\">Female</option>\n" +
+                "                            </select>\n" +
+                "                        </div>")
+
         });
-    });
+    })
+    ;
 
     $(function () {
         var current = location.pathname;

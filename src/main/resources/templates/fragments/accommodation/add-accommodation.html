@@ -1,7 +1,8 @@
 <div class="container register-modal">
     <h1 class="modal-title w-100 text-center white-text font-weight-bold">
         My Home</h1>
-    <form class="needs-validation" th:action="@{/add-accommodation}" enctype="multipart/form-data" method="post"
+    <form class="needs-validation" th:action="@{/landlord/add-accommodation}" enctype="multipart/form-data"
+          method="post"
           th:object="${accommodationModel}">
         <hr class="hr"/>
         <div class="form-row">
@@ -32,33 +33,35 @@
         <div class="form-row">
             <div class="col-md-1 mb-3">
                 <div class="custom-control custom-checkbox mt-4 ">
-                    <input type="checkbox" class="custom-control-input" id="inputHasTV">
+                    <input type="checkbox" th:field="*{hasTV}" class="custom-control-input" id="inputHasTV">
                     <label class="custom-control-label" for="inputHasTV">TV</label>
                 </div>
                 <div class="custom-control custom-checkbox mt-4">
-                    <input type="checkbox" class="custom-control-input" id="inputHasWifi">
+                    <input type="checkbox" th:field="*{hasWifi}" class="custom-control-input" id="inputHasWifi">
                     <label class="custom-control-label" for="inputHasWifi">Wifi</label>
                 </div>
                 <div class="custom-control custom-checkbox mt-4">
-                    <input type="checkbox" class="custom-control-input" id="inputHasAPet">
+                    <input type="checkbox" th:field="*{hasPet}" class="custom-control-input" id="inputHasAPet">
                     <label class="custom-control-label" for="inputHasAPet">A Pet</label>
                 </div>
             </div>
             <div class="col-md-2 mb-3">
                 <div class="custom-control custom-checkbox mt-4">
-                    <input type="checkbox" class="custom-control-input" id="inputHasRefrigerator">
+                    <input type="checkbox" th:field="*{hasRefrigerator}" class="custom-control-input"
+                           id="inputHasRefrigerator">
                     <label class="custom-control-label" for="inputHasRefrigerator">Refrigerator</label>
                 </div>
                 <div class="custom-control custom-checkbox mt-4 ">
-                    <input type="checkbox" class="custom-control-input" id="inputHasWashingMachine">
+                    <input type="checkbox" th:field="*{hasWashingMachine}" class="custom-control-input"
+                           id="inputHasWashingMachine">
                     <label class="custom-control-label" for="inputHasWashingMachine">Washing Machine</label>
                 </div>
                 <div class="custom-control custom-checkbox mt-4 ">
-                    <input type="checkbox" class="custom-control-input" id="inputIsFurnished">
+                    <input type="checkbox" th:field="*{isFurnished}" class="custom-control-input" id="inputIsFurnished">
                     <label class="custom-control-label" for="inputIsFurnished">Is Furnished</label>
                 </div>
             </div>
-            <div class="col-md-2 ml-2 mb-3">
+            <div class="col-md-2 ml-2 mt-3 mb-3">
                 <label for="inputNumberOfRooms">Number Of Rooms</label>
                 <input type="number" th:field="*{numberOfRooms}" placeholder="Number Of Rooms"
                        id="inputNumberOfRooms" class="form-control" required>
@@ -68,7 +71,7 @@
                 <input type="number" th:field="*{numberOfBathrooms}" placeholder="Number Of Bathrooms"
                        id="inputNumberOfBathrooms" class="form-control" required>
             </div>
-            <div class="col-md-2 ml-2 mb-3">
+            <div class="col-md-2 ml-2 mt-3 mb-3">
                 <label for="inputRentPerMonth">Rent Per Month</label>
                 <input type="number" th:field="*{rentPerMonth}" placeholder="Rent Per Month"
                        id="inputRentPerMonth" class="form-control" required>
@@ -80,7 +83,7 @@
                         style="margin-top: 30px">Has Parking
                 </button>
             </div>
-            <div id="parking-form" class="form-group row col-md-4 ml-4 mb-3">
+            <div id="parking-form" class="form-group row col-md-4 ml-5 mb-3">
                 <div class="col-12 text-center align-middle">
                     <h3 class="modal-title my-auto font-weight-bold pt-5">
                         No parking</h3>
@@ -88,18 +91,37 @@
             </div>
         </div>
         <div class="form-row">
-            <div class="col-md-4 mb-3 button-margin">
-                <ul class="nav nav-pills" id="pills-tab" role="tablist">
-                    <li class="nav-item btn-primary divider-vertical">
-                        <a class="nav-link btn active" id="pills-guest-tab" data-toggle="pill"
-                           style="width: 65px">House</a>
-                    </li>
-                    <li class="nav-item btn-primary divider-vertical">
-                        <a class="nav-link btn active" id="pills-landlord-tab" data-toggle="pill"
-                           role="tab" aria-controls="pills-guest-landlord-form"
-                           aria-selected="false">Apartment</a>
-                    </li>
-                </ul>
+            <div class="col-md-5 mb-3 ">
+                <label for="inputMoreInfo">More Info</label>
+                <textarea th:field="*{moreInfo}" class="form-control" id="inputMoreInfo"
+                          placeholder="More Info"></textarea>
+                <small style="color: red" th:each="error : ${#fields.errors('address')}"
+                       th:text="${error}"></small>
+            </div>
+            <div class="nav nav-pills col-md-3 my-auto" id="pills-tab" role="tablist">
+                <button type="button" id="house-button" class="reg-button btn-primary btn my-2 mx-1 ">House
+                </button>
+
+                <button type="button" id="apartment-button" class="reg-button btn-primary btn my-2 mx-1 active">Apartment
+                </button>
+            </div>
+            <div id="house-apartment-container" class="col-md-4 my-auto">
+                <div class="form-row ">
+                    <div class="col-5 form-group ">
+                        <div class="custom-control custom-checkbox mt-4 ">
+                            <input type="checkbox" name="hasElevator" class="custom-control-input" id="inputHasElevator">
+                            <label class="custom-control-label" for="inputHasElevator">Has Elevator</label>
+                        </div>
+                        <div class="custom-control custom-checkbox mt-4 ">
+                            <input type="checkbox" name="hasDoorman" class="custom-control-input" id="inputHasDoorman">
+                            <label class="custom-control-label" for="inputHasDoorman">Has Doorman</label>
+                        </div>
+                    </div>
+                    <div class="col-md-7 my-auto">
+                        <label for="inputFloor">Floor</label>
+                        <input type="number" min="1" max="100" name="floor" id="inputFloor" class="form-control" placeholder="Floor" required>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -125,34 +147,100 @@
                     '                        No parking</h3>\n' +
                     '                </div>')
 
+
+
             } else {
                 parkingButton.classList.add('active')
                 $('#no-parking').fadeOut();
                 parkingForm.empty()
                 parkingForm.append('<div id="has-parking" class="form-row mt-4">\n' +
-                    '                    <div class="col-md-7">\n' +
+                    '                    <div class="col-md-9">\n' +
                     '                        <label for="inputNumberOfParkingSpots">Number Of Parking Spots</label>\n' +
                     '                    </div>\n' +
-                    '                    <div class="col-md-5">\n' +
-                    '                        <input type="number" id="inputNumberOfParkingSpots" class="form-control"\n' +
-                    '                               placeholder="Parking Spots">\n' +
+                    '                    <div class="col-md-3">\n' +
+                    '                         <select class=\"custom-select \" name=\"numberOfParkingSpots\" id=\"inputRoommateGender\">\n' +
+                    '                             <option value=\"1\">1</option>\n' +
+                    '                             <option value=\"2\">2</option>\n' +
+                    '                             <option value=\"3\">3</option>\n' +
+                    '                             <option value=\"4\">4</option>\n' +
+                    '                             <option value=\"5\">5</option>\n' +
+                    '                         </select>\n' +
+                    '                     </div>\n' +
+                    '                    <div class="col-md-3">\n' +
                     '                    </div>\n' +
                     '                </div>\n' +
                     '                <div class="form-row mt-2">\n' +
                     '                    <div class="custom-control custom-checkbox ml-2">\n' +
-                    '                        <input type="checkbox" class="custom-control-input" id="inputIsIndoor">\n' +
+                    '                        <input type="checkbox" name="indoor" class="custom-control-input" id="inputIsIndoor">\n' +
                     '                        <label class="custom-control-label" for="inputIsIndoor">Is Indoor</label>\n' +
                     '                    </div>\n' +
                     '                    <div class="custom-control custom-checkbox ml-2">\n' +
-                    '                        <input type="checkbox" class="custom-control-input" id="inputIsGuarded">\n' +
+                    '                        <input type="checkbox" name="guarded" class="custom-control-input" id="inputIsGuarded">\n' +
                     '                        <label class="custom-control-label" for="inputIsGuarded">Is Guarded</label>\n' +
                     '                    </div>\n' +
                     '                    <div class="custom-control custom-checkbox ml-2">\n' +
-                    '                        <input type="checkbox" class="custom-control-input" id="inputHasCameras">\n' +
-                    '                        <label class="custom-control-label" for="inputIsGuarded">Has Cameras</label>\n' +
+                    '                        <input type="checkbox" name="hasCameras" class="custom-control-input" id="inputHasCameras">\n' +
+                    '                        <label class="custom-control-label" for="inputHasCameras">Has Cameras</label>\n' +
                     '                    </div>\n' +
                     '                </div>')
             }
         })
     })
+</script>
+<script>
+    $(document).ready(function () {
+        $('#house-button').click(function () {
+
+            this.classList.add('active')
+            $('#apartment-button').removeClass('active')
+
+            var accommodationForm = $('#house-apartment-container');
+
+            accommodationForm.empty();
+            accommodationForm.append(" <div class=\"form-row \">\n" +
+                "                    <div class=\"col-4 form-group \">\n" +
+                "                        <div class=\"custom-control custom-checkbox mt-4 \">\n" +
+                "                            <input type=\"checkbox\" name=\"hasYard\" class=\"custom-control-input\" id=\"inputHasYard\">\n" +
+                "                            <label class=\"custom-control-label\" for=\"inputHasYard\">Has Yard</label>\n" +
+                "                        </div>\n" +
+                "                    </div>\n" +
+                "                    <div class=\"col-md-8 \">\n" +
+                "                        <label for=\"inputYardQuadrature\">Yard Quadrature</label>\n" +
+                "                        <input type=\"number\" name=\"yardQuadrature\" id=\"inputYardQuadrature\" class=\"form-control\"\n" +
+                "                               placeholder=\"Yard Quadrature\">\n" +
+                "                    </div>\n" +
+                "                </div>")
+
+        })
+    });
+
+    $(document).ready(function () {
+        $('#apartment-button').click(function () {
+
+            this.classList.add('active')
+            $('#house-button').removeClass('active')
+
+            var accommodationForm = $('#house-apartment-container');
+
+            accommodationForm.empty()
+                accommodationForm.append(" <div class=\"form-row \">\n" +
+                    "                    <div class=\"col-5 form-group \">\n" +
+                    "                        <div class=\"custom-control custom-checkbox mt-4 \">\n" +
+                    "                            <input type=\"checkbox\" name=\"hasElevator\" class=\"custom-control-input\" id=\"inputHasElevator\">\n" +
+                    "                            <label class=\"custom-control-label\" for=\"inputHasElevator\">Has Elevator</label>\n" +
+                    "                        </div>\n" +
+                    "                        <div class=\"custom-control custom-checkbox mt-4 \">\n" +
+                    "                            <input type=\"checkbox\" name=\"hasDoorman\" class=\"custom-control-input\" id=\"inputHasDoorman\">\n" +
+                    "                            <label class=\"custom-control-label\" for=\"inputHasDoorman\">Has Doorman</label>\n" +
+                    "                        </div>\n" +
+                    "                    </div>\n" +
+                    "                    <div class=\"col-md-7 my-auto\">\n" +
+                    "                        <label for=\"inputFloor\">Floor</label>\n" +
+                    "                        <input type=\"number\" min=\"1\" max=\"100\" name=\"floor\" id=\"inputFloor\" class=\"form-control\"\n" +
+                    "                               placeholder=\"Floor\">\n" +
+                    "                    </div>\n" +
+                    "                </div>")
+        });
+    });
+
 </script>

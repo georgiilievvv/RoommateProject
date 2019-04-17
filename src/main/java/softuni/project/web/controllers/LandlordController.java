@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import softuni.project.domain.models.binding.AccommodationAddBindingModel;
+import softuni.project.domain.models.service.AccommodationServiceModel;
 import softuni.project.domain.models.service.CityServiceModel;
 import softuni.project.service.AccommodationService;
 import softuni.project.service.CityService;
@@ -76,6 +77,8 @@ public class LandlordController {
         if (bindingResult.hasErrors()) {
             return setModelAndView(modelAndView, accommodationAddBindingModel);
         }
+
+        accommodationService.addAccommodation(modelMapper.map(accommodationAddBindingModel, AccommodationServiceModel.class));
 
         return modelAndView;
     }

@@ -73,17 +73,6 @@ public class HomeController {
         return modelAndView;
     }
 
-    @GetMapping("/login")
-    @PreAuthorize("isAnonymous()")
-    public ModelAndView login(ModelAndView modelAndView, @ModelAttribute UserRegisterBindingModel bindingModel){
-
-        modelAndView.addObject("cityModels", getCities());
-        modelAndView.addObject("bindingModel", bindingModel);
-        modelAndView.setViewName("index");
-
-        return modelAndView;
-    }
-
     @GetMapping("/home")
     @PreAuthorize("isAuthenticated()")
     public ModelAndView home(ModelAndView modelAndView, Principal principal){

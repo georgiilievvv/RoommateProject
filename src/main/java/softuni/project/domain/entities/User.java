@@ -24,9 +24,8 @@ public class User extends BaseEntity implements UserDetails {
     private String conditions;
     private List<User> approvedRoommates;
     private String preferences;
-    private List<User> landlord_approvals;
-    private List<Apartment> marked_Apartments;
-    private List<House> marked_Houses;
+    private List<User> landlordApprovals;
+    private List<Accommodation> markedAccommodations;
 
     public User() {
     }
@@ -197,32 +196,22 @@ public class User extends BaseEntity implements UserDetails {
     }
 
     @ManyToMany(targetEntity = User.class, mappedBy = "approvedRoommates")
-    public List<User> getLandlord_approvals() {
-        return landlord_approvals;
+    public List<User> getLandlordApprovals() {
+        return landlordApprovals;
     }
 
-    public void setLandlord_approvals(List<User> landlord_approvals) {
-        this.landlord_approvals = landlord_approvals;
+    public void setLandlordApprovals(List<User> landlordApprovals) {
+        this.landlordApprovals = landlordApprovals;
     }
 
-    @OneToMany(targetEntity = Apartment.class)
+    @OneToMany(targetEntity = Accommodation.class)
     @JoinColumn(name = "apartments_id", referencedColumnName = "id")
-    public List<Apartment> getMarked_Apartments() {
-        return marked_Apartments;
+
+    public List<Accommodation> getMarkedAccommodations() {
+        return markedAccommodations;
     }
 
-    public void setMarked_Apartments(List<Apartment> marked_Apartments) {
-        this.marked_Apartments = marked_Apartments;
+    public void setMarkedAccommodations(List<Accommodation> markedAccommodations) {
+        this.markedAccommodations = markedAccommodations;
     }
-
-    @OneToMany(targetEntity = House.class)
-    @JoinColumn(name = "houses_id", referencedColumnName = "id")
-    public List<House> getMarked_Houses() {
-        return marked_Houses;
-    }
-
-    public void setMarked_Houses(List<House> marked_Houses) {
-        this.marked_Houses = marked_Houses;
-    }
-
 }

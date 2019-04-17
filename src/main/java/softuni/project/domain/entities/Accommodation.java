@@ -2,26 +2,35 @@ package softuni.project.domain.entities;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
-@MappedSuperclass
-public class Accommodation extends BaseEntity{
+@Entity
+@Table(name = "accommodations")
+public class Accommodation extends BaseEntity {
 
     private User owner;
+    private AccommodationType type;
     private City city;
-    private	String address;
-    private	Double quadrature;
+    private String address;
+    private Double quadrature;
     private BigDecimal rentPerMonth;
-    private	Parking parking;
-    private	Integer numberOfRooms;
-    private	Integer numberOfBathrooms;
-    private	boolean hasTV;
-    private	boolean hasPet;
-    private	boolean hasWifi;
-    private	boolean Furnished;
-    private	boolean hasRefrigerator;
-    private	boolean hasWashingMachine;
+    private Parking parking;
+    private Integer numberOfRooms;
+    private Integer numberOfBathrooms;
+    private boolean hasTV;
+    private boolean hasPet;
+    private boolean hasWifi;
+    private boolean Furnished;
+    private boolean hasRefrigerator;
+    private boolean hasWashingMachine;
     private String imageUrl;
-    private	String moreInfo;
+    private String moreInfo;
+    private boolean hasDoorman;
+    private boolean hasElevator;
+    private int floor;
+    private boolean hasYard;
+    private Double yardQuadrature;
+    private List<User> candidates;
 
 
     protected Accommodation() {
@@ -38,6 +47,16 @@ public class Accommodation extends BaseEntity{
 
     public void setOwner(User owner) {
         this.owner = owner;
+    }
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type",nullable = false)
+    public AccommodationType getType() {
+        return type;
+    }
+
+    public void setType(AccommodationType type) {
+        this.type = type;
     }
 
     @ManyToOne()
@@ -178,5 +197,60 @@ public class Accommodation extends BaseEntity{
 
     public void setMoreInfo(String moreInfo) {
         this.moreInfo = moreInfo;
+    }
+
+    @Column(name = "has_doorman", nullable = false)
+    public boolean hasDoorman() {
+        return hasDoorman;
+    }
+
+    public void setHasDoorman(boolean hasDoorman) {
+        this.hasDoorman = hasDoorman;
+    }
+
+    @Column(name = "has_elevator", nullable = false)
+    public boolean hasElevator() {
+        return hasElevator;
+    }
+
+    public void setHasElevator(boolean hasElevator) {
+        this.hasElevator = hasElevator;
+    }
+
+    @Column(name = "floor", nullable = false)
+    public int getFloor() {
+        return floor;
+    }
+
+    public void setFloor(int floor) {
+        this.floor = floor;
+    }
+
+
+    @Column(name = "has_yard")
+    public boolean hasYard() {
+        return hasYard;
+    }
+
+    public void setHasYard(boolean hasYard) {
+        this.hasYard = hasYard;
+    }
+
+    @Column(name = "yard_quadrature")
+    public Double getYardQuadrature() {
+        return yardQuadrature;
+    }
+
+    public void setYardQuadrature(Double yardQuadrature) {
+        this.yardQuadrature = yardQuadrature;
+    }
+
+    @ManyToMany
+    public List<User> getCandidates() {
+        return candidates;
+    }
+
+    public void setCandidates(List<User> candidates) {
+        this.candidates = candidates;
     }
 }

@@ -10,24 +10,24 @@ public class AccommodationAddBindingModel {
     private	Double quadrature;
     private BigDecimal rentPerMonth;
     private Integer numberOfParkingSpots;
-    private boolean isIndoor;
-    private boolean isGuarded;
-    private boolean hasCameras;
+    private boolean Indoor;
+    private boolean Guarded;
+    private Boolean hasCameras;
     private	Integer numberOfRooms;
     private	Integer numberOfBathrooms;
-    private	boolean hasTV;
-    private	boolean hasPet;
-    private	boolean hasWifi;
-    private	boolean Furnished;
-    private	boolean hasRefrigerator;
-    private	boolean hasWashingMachine;
+    private	Boolean hasTV;
+    private	Boolean hasPet;
+    private	Boolean hasWifi;
+    private	Boolean isFurnished;
+    private	Boolean hasRefrigerator;
+    private	Boolean hasWashingMachine;
     private String imageUrl;
     private	String moreInfo;
-    private boolean hasDoorman;
-    private boolean hasElevator;
+    private Boolean hasDoorman;
+    private Boolean hasElevator;
     private int floor;
-    private boolean hasYard;
-    private Double yardQuadrature;
+    private Boolean hasYard;
+    private double yardQuadrature;
 
     public AccommodationAddBindingModel() {
     }
@@ -80,27 +80,27 @@ public class AccommodationAddBindingModel {
         this.numberOfParkingSpots = numberOfParkingSpots;
     }
 
-    public boolean isIndoor() {
-        return isIndoor;
+    public boolean getIndoor() {
+        return Indoor;
     }
 
     public void setIndoor(boolean indoor) {
-        isIndoor = indoor;
+        Indoor = indoor;
     }
 
-    public boolean isGuarded() {
-        return isGuarded;
+    public boolean getGuarded() {
+        return Guarded;
     }
 
     public void setGuarded(boolean guarded) {
-        isGuarded = guarded;
+        Guarded = guarded;
     }
 
-    public boolean hasCameras() {
+    public Boolean getHasCameras() {
         return hasCameras;
     }
 
-    public void setHasCameras(boolean hasCameras) {
+    public void setHasCameras(Boolean hasCameras) {
         this.hasCameras = hasCameras;
     }
 
@@ -120,51 +120,51 @@ public class AccommodationAddBindingModel {
         this.numberOfBathrooms = numberOfBathrooms;
     }
 
-    public boolean hasTV() {
+    public Boolean getHasTV() {
         return hasTV;
     }
 
-    public void setHasTV(boolean hasTV) {
+    public void setHasTV(Boolean hasTV) {
         this.hasTV = hasTV;
     }
 
-    public boolean hasPet() {
+    public Boolean getHasPet() {
         return hasPet;
     }
 
-    public void setHasPet(boolean hasPet) {
+    public void setHasPet(Boolean hasPet) {
         this.hasPet = hasPet;
     }
 
-    public boolean hasWifi() {
+    public Boolean getHasWifi() {
         return hasWifi;
     }
 
-    public void setHasWifi(boolean hasWifi) {
+    public void setHasWifi(Boolean hasWifi) {
         this.hasWifi = hasWifi;
     }
 
-    public boolean isFurnished() {
-        return Furnished;
+    public Boolean getIsFurnished() {
+        return isFurnished;
     }
 
-    public void setFurnished(boolean furnished) {
-        Furnished = furnished;
+    public void setIsFurnished(Boolean furnished) {
+        isFurnished = furnished;
     }
 
-    public boolean hasRefrigerator() {
+    public Boolean getHasRefrigerator() {
         return hasRefrigerator;
     }
 
-    public void setHasRefrigerator(boolean hasRefrigerator) {
+    public void setHasRefrigerator(Boolean hasRefrigerator) {
         this.hasRefrigerator = hasRefrigerator;
     }
 
-    public boolean hasWashingMachine() {
+    public Boolean getHasWashingMachine() {
         return hasWashingMachine;
     }
 
-    public void setHasWashingMachine(boolean hasWashingMachine) {
+    public void setHasWashingMachine(Boolean hasWashingMachine) {
         this.hasWashingMachine = hasWashingMachine;
     }
 
@@ -184,19 +184,19 @@ public class AccommodationAddBindingModel {
         this.moreInfo = moreInfo;
     }
 
-    public boolean hasDoorman() {
+    public Boolean hasDoorman() {
         return hasDoorman;
     }
 
-    public void setHasDoorman(boolean hasDoorman) {
+    public void setHasDoorman(Boolean hasDoorman) {
         this.hasDoorman = hasDoorman;
     }
 
-    public boolean hasElevator() {
+    public Boolean getHasElevator() {
         return hasElevator;
     }
 
-    public void setHasElevator(boolean hasElevator) {
+    public void setHasElevator(Boolean hasElevator) {
         this.hasElevator = hasElevator;
     }
 
@@ -208,19 +208,19 @@ public class AccommodationAddBindingModel {
         this.floor = floor;
     }
 
-    public boolean hasYard() {
+    public Boolean getHasYard() {
         return hasYard;
     }
 
-    public void setHasYard(boolean hasYard) {
+    public void setHasYard(Boolean hasYard) {
         this.hasYard = hasYard;
     }
 
-    public Double getYardQuadrature() {
+    public double getYardQuadrature() {
         return yardQuadrature;
     }
 
-    public void setYardQuadrature(Double yardQuadrature) {
+    public void setYardQuadrature(double yardQuadrature) {
         this.yardQuadrature = yardQuadrature;
     }
 }
