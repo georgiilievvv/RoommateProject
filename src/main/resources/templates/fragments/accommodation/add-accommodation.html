@@ -70,14 +70,14 @@
                 <label for="inputNumberOfBathrooms">Bathrooms</label>
                 <input type="number" th:field="*{numberOfBathrooms}" placeholder="Number Of Bathrooms"
                        id="inputNumberOfBathrooms" class="form-control" required>
+                <small style="color: red" th:each="error : ${#fields.errors('numberOfBathrooms')}"
+                       th:text="${error}"></small>
             </div>
             <div class="col-md-2 ml-2 mt-3 mb-3">
                 <label for="inputRentPerMonth">Rent Per Month</label>
                 <input type="number" th:field="*{rentPerMonth}" placeholder="Rent Per Month"
                        id="inputRentPerMonth" class="form-control" required>
                 <small style="color: red" th:each="error : ${#fields.errors('rentPerMonth')}"
-                       th:text="${error}"></small>
-                <small style="color: red" th:each="error : ${#fields.errors('numberOfBathrooms')}"
                        th:text="${error}"></small>
                 <button type="button" class=" reg-button btn-primary btn col-12 " id="parking-button"
                         style="margin-top: 30px">Has Parking

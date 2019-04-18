@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import softuni.project.domain.entities.Accommodation;
+import softuni.project.domain.entities.AccommodationType;
 import softuni.project.domain.models.service.AccommodationServiceModel;
 import softuni.project.repository.AccommodationRepository;
 
@@ -13,13 +14,13 @@ import java.util.stream.Collectors;
 @Service
 public class AccommodationServiceImpl implements AccommodationService {
 
-    private final ParkingService parkingService;
+    private final UserService userService;
     private final AccommodationRepository accommodationRepository;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public AccommodationServiceImpl(ParkingService parkingService, AccommodationRepository accommodationRepository, ModelMapper modelMapper) {
-        this.parkingService = parkingService;
+    public AccommodationServiceImpl(UserService userService, AccommodationRepository accommodationRepository, ModelMapper modelMapper) {
+        this.userService = userService;
         this.accommodationRepository = accommodationRepository;
         this.modelMapper = modelMapper;
     }
@@ -27,12 +28,11 @@ public class AccommodationServiceImpl implements AccommodationService {
     @Override
     public AccommodationServiceModel addAccommodation(AccommodationServiceModel accommodationServiceModel) {
 
-        this.parkingService.addParking(accommodationServiceModel.getParking());
+        Accommodation accommodation = this.modelMapper.map(accommodationServiceModel, Accommodation.class);
+        accommodation.setType(accommodation.getFloor() != 0 ? AccommodationType.House : AccommodationType.Apartment);
+        this.accommodationRepository.save(accommodation);
 
-            Accommodation accommodation = this.modelMapper.map(accommodationServiceModel, Accommodation.class);
-            this.accommodationRepository.save(accommodation);
-
-            return this.modelMapper.map(accommodation, AccommodationServiceModel.class);
+        return this.modelMapper.map(accommodation, AccommodationServiceModel.class);
     }
 
     @Override

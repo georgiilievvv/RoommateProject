@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import softuni.project.domain.models.binding.UserRegisterBindingModel;
 import softuni.project.domain.models.service.CityServiceModel;
 import softuni.project.domain.models.service.UserServiceModel;
+import softuni.project.service.AccommodationService;
 import softuni.project.service.CityService;
 import softuni.project.service.UserService;
 import softuni.project.validation.user.UserRegisterValidator;
@@ -27,13 +27,15 @@ public class HomeController {
 
     private final ModelMapper modelMapper;
     private final UserRegisterValidator userRegisterValidator;
+    private final AccommodationService accommodationService;
     private final UserService userService;
     private final CityService cityService;
 
     @Autowired
-    public HomeController(ModelMapper modelMapper, UserRegisterValidator userRegisterValidator, UserService userService, CityService cityService) {
+    public HomeController(ModelMapper modelMapper, UserRegisterValidator userRegisterValidator, AccommodationService accommodationService, UserService userService, CityService cityService) {
         this.modelMapper = modelMapper;
         this.userRegisterValidator = userRegisterValidator;
+        this.accommodationService = accommodationService;
         this.userService = userService;
         this.cityService = cityService;
     }
@@ -78,6 +80,7 @@ public class HomeController {
     public ModelAndView home(ModelAndView modelAndView, Principal principal){
 
         modelAndView.addObject("user", this.userService.findUserByUsername(principal.getName()));
+        modelAndView.addObject("accommodationModels", this.accommodationService.findAllAccommodations());
         modelAndView.addObject("view", "fragments/product");
 
         modelAndView.setViewName("home");

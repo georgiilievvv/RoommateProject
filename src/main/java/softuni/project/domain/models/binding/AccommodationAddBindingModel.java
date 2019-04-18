@@ -12,21 +12,21 @@ public class AccommodationAddBindingModel {
     private Integer numberOfParkingSpots;
     private boolean Indoor;
     private boolean Guarded;
-    private Boolean hasCameras;
+    private boolean hasCameras;
     private	Integer numberOfRooms;
     private	Integer numberOfBathrooms;
-    private	Boolean hasTV;
-    private	Boolean hasPet;
-    private	Boolean hasWifi;
-    private	Boolean isFurnished;
-    private	Boolean hasRefrigerator;
-    private	Boolean hasWashingMachine;
+    private	boolean hasTV;
+    private	boolean hasPet;
+    private	boolean hasWifi;
+    private	boolean isFurnished;
+    private	boolean hasRefrigerator;
+    private	boolean hasWashingMachine;
     private String imageUrl;
     private	String moreInfo;
-    private Boolean hasDoorman;
-    private Boolean hasElevator;
+    private boolean hasDoorman;
+    private boolean hasElevator;
     private int floor;
-    private Boolean hasYard;
+    private boolean hasYard;
     private double yardQuadrature;
 
     public AccommodationAddBindingModel() {
@@ -96,11 +96,11 @@ public class AccommodationAddBindingModel {
         Guarded = guarded;
     }
 
-    public Boolean getHasCameras() {
+    public boolean getHasCameras() {
         return hasCameras;
     }
 
-    public void setHasCameras(Boolean hasCameras) {
+    public void setHasCameras(boolean hasCameras) {
         this.hasCameras = hasCameras;
     }
 
@@ -120,51 +120,51 @@ public class AccommodationAddBindingModel {
         this.numberOfBathrooms = numberOfBathrooms;
     }
 
-    public Boolean getHasTV() {
+    public boolean getHasTV() {
         return hasTV;
     }
 
-    public void setHasTV(Boolean hasTV) {
+    public void setHasTV(boolean hasTV) {
         this.hasTV = hasTV;
     }
 
-    public Boolean getHasPet() {
+    public boolean getHasPet() {
         return hasPet;
     }
 
-    public void setHasPet(Boolean hasPet) {
+    public void setHasPet(boolean hasPet) {
         this.hasPet = hasPet;
     }
 
-    public Boolean getHasWifi() {
+    public boolean getHasWifi() {
         return hasWifi;
     }
 
-    public void setHasWifi(Boolean hasWifi) {
+    public void setHasWifi(boolean hasWifi) {
         this.hasWifi = hasWifi;
     }
 
-    public Boolean getIsFurnished() {
+    public boolean getIsFurnished() {
         return isFurnished;
     }
 
-    public void setIsFurnished(Boolean furnished) {
+    public void setIsFurnished(boolean furnished) {
         isFurnished = furnished;
     }
 
-    public Boolean getHasRefrigerator() {
+    public boolean getHasRefrigerator() {
         return hasRefrigerator;
     }
 
-    public void setHasRefrigerator(Boolean hasRefrigerator) {
+    public void setHasRefrigerator(boolean hasRefrigerator) {
         this.hasRefrigerator = hasRefrigerator;
     }
 
-    public Boolean getHasWashingMachine() {
+    public boolean getHasWashingMachine() {
         return hasWashingMachine;
     }
 
-    public void setHasWashingMachine(Boolean hasWashingMachine) {
+    public void setHasWashingMachine(boolean hasWashingMachine) {
         this.hasWashingMachine = hasWashingMachine;
     }
 
@@ -184,19 +184,19 @@ public class AccommodationAddBindingModel {
         this.moreInfo = moreInfo;
     }
 
-    public Boolean hasDoorman() {
+    public boolean hasDoorman() {
         return hasDoorman;
     }
 
-    public void setHasDoorman(Boolean hasDoorman) {
+    public void setHasDoorman(boolean hasDoorman) {
         this.hasDoorman = hasDoorman;
     }
 
-    public Boolean getHasElevator() {
+    public boolean getHasElevator() {
         return hasElevator;
     }
 
-    public void setHasElevator(Boolean hasElevator) {
+    public void setHasElevator(boolean hasElevator) {
         this.hasElevator = hasElevator;
     }
 
@@ -208,11 +208,11 @@ public class AccommodationAddBindingModel {
         this.floor = floor;
     }
 
-    public Boolean getHasYard() {
+    public boolean getHasYard() {
         return hasYard;
     }
 
-    public void setHasYard(Boolean hasYard) {
+    public void setHasYard(boolean hasYard) {
         this.hasYard = hasYard;
     }
 

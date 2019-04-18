@@ -3,8 +3,8 @@ package softuni.project.domain.models.service;
 public class ParkingServiceModel extends BaseServiceModel{
 
     private Integer numberOfParkingSpots;
-    private boolean isIndoor;
-    private boolean isGuarded;
+    private boolean Indoor;
+    private boolean Guarded;
     private boolean hasCameras;
 
     public ParkingServiceModel() {
@@ -18,20 +18,20 @@ public class ParkingServiceModel extends BaseServiceModel{
         this.numberOfParkingSpots = numberOfParkingSpots;
     }
 
-    public boolean isIndoor() {
-        return isIndoor;
+    public boolean getIndoor() {
+        return Indoor;
     }
 
     public void setIndoor(boolean indoor) {
-        isIndoor = indoor;
+        Indoor = indoor;
     }
 
-    public boolean isGuarded() {
-        return isGuarded;
+    public boolean getGuarded() {
+        return Guarded;
     }
 
     public void setGuarded(boolean guarded) {
-        isGuarded = guarded;
+        Guarded = guarded;
     }
 
     public boolean isHasCameras() {

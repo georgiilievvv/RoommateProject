@@ -13,8 +13,10 @@ import org.springframework.web.servlet.ModelAndView;
 import softuni.project.domain.models.binding.AccommodationAddBindingModel;
 import softuni.project.domain.models.service.AccommodationServiceModel;
 import softuni.project.domain.models.service.CityServiceModel;
+import softuni.project.domain.models.service.ParkingServiceModel;
 import softuni.project.service.AccommodationService;
 import softuni.project.service.CityService;
+import softuni.project.service.ParkingService;
 import softuni.project.service.UserService;
 import softuni.project.validation.accommodation.AccommodationAddValidator;
 
@@ -29,14 +31,16 @@ import java.util.stream.Collectors;
 public class LandlordController {
 
     private final AccommodationService accommodationService;
+    private final ParkingService parkingService;
     private final AccommodationAddValidator accommodationAddValidator;
     private final UserService userService;
     private final CityService cityService;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public LandlordController(AccommodationService accommodationService, AccommodationAddValidator accommodationAddValidator, UserService userService, CityService cityService, ModelMapper modelMapper) {
+    public LandlordController(AccommodationService accommodationService, ParkingService parkingService, AccommodationAddValidator accommodationAddValidator, UserService userService, CityService cityService, ModelMapper modelMapper) {
         this.accommodationService = accommodationService;
+        this.parkingService = parkingService;
         this.accommodationAddValidator = accommodationAddValidator;
         this.userService = userService;
         this.cityService = cityService;
@@ -68,17 +72,23 @@ public class LandlordController {
 
 
     @PostMapping("/add-accommodation")
-    public ModelAndView myHome(ModelAndView modelAndView, @Valid @ModelAttribute()
+    public ModelAndView myHome(ModelAndView modelAndView, @Valid @ModelAttribute(name = "accommodationModel")
             AccommodationAddBindingModel accommodationAddBindingModel, BindingResult bindingResult, Principal principal) {
 
         accommodationAddBindingModel.setOwner(principal.getName());
         accommodationAddValidator.validate(accommodationAddBindingModel, bindingResult);
-
         if (bindingResult.hasErrors()) {
             return setModelAndView(modelAndView, accommodationAddBindingModel);
         }
+        saveAccommodationAndParking(accommodationAddBindingModel);
+        return modelAndView;
+    }
 
-        accommodationService.addAccommodation(modelMapper.map(accommodationAddBindingModel, AccommodationServiceModel.class));
+    private ModelAndView setModelAndView(ModelAndView modelAndView, AccommodationAddBindingModel accommodationAddBindingModel) {
+        modelAndView.addObject("cityModels", getCities());
+        modelAndView.addObject("accommodationModel", accommodationAddBindingModel);
+        modelAndView.addObject("view", "/fragments/accommodation/add-accommodation");
+        modelAndView.setViewName("home");
 
         return modelAndView;
     }
@@ -89,12 +99,12 @@ public class LandlordController {
                 .collect(Collectors.toList());
     }
 
-    private ModelAndView setModelAndView(ModelAndView modelAndView, AccommodationAddBindingModel accommodationAddBindingModel) {
-        modelAndView.addObject("cityModels", getCities());
-        modelAndView.addObject("accommodationModel", accommodationAddBindingModel);
-        modelAndView.addObject("view", "/fragments/accommodation/add-accommodation");
-        modelAndView.setViewName("home");
-
-        return modelAndView;
+    private void saveAccommodationAndParking(AccommodationAddBindingModel accommodationAddBindingModel) {
+        ParkingServiceModel parkingServiceModel = parkingService.addParking(modelMapper.map(accommodationAddBindingModel, ParkingServiceModel.class));
+        AccommodationServiceModel accommodation = modelMapper.map(accommodationAddBindingModel, AccommodationServiceModel.class);
+        accommodation.setParking(parkingServiceModel);
+        accommodation.setOwner(this.userService.findUserByUsername(accommodationAddBindingModel.getOwner()));
+        accommodation.setId(null);
+        accommodationService.addAccommodation(accommodation);
     }
 }

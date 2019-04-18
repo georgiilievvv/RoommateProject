@@ -2,6 +2,8 @@ package softuni.project.validation;
 
 public class ValidationConstants {
 
+    public final static String FIELD_IS_NULL = "Field cannot be empty";
+
     public final static String USERNAME_ALREADY_EXISTS = "Username %s already exists.";
     public final static String USERNAME_LENGTH = "Username must be between 3 and 10 characters long.";
 
@@ -17,7 +19,14 @@ public class ValidationConstants {
     public final static String INVALID_AGE = "You must be between 18 and 110 years old.";
 
     public final static String NAME_LENGTH = "Name must contain at least 3 characters.";
+
     public static final String EMAIL_IS_INVALID = "Email is invalid.";
     
     public static final String INVALID_FLOOR = "Number of floor must be between 1 and 100.";
+
+    public static final String INVALID_NUMBER_OF_ROOMS = "Number of rooms must be between 1 and 10.";
+
+    public static final String INVALID_NUMBER_OF_BATHROOMS = "Number of bathrooms must be between 1 and 5.";
+
+    public static final String INVALID_RENT_PER_MONTH = "Rent must be between 1 and 5000.";
 }

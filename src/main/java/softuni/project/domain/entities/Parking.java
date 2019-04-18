@@ -9,8 +9,8 @@ import javax.persistence.Table;
 public class Parking extends BaseEntity{
 
     private Integer numberOfParkingSpots;
-    private boolean isIndoor;
-    private boolean isGuarded;
+    private boolean indoor;
+    private boolean guarded;
     private boolean hasCameras;
 
     public Parking() {
@@ -26,21 +26,21 @@ public class Parking extends BaseEntity{
     }
 
     @Column(name = "is_indoor")
-    public boolean isIndoor() {
-        return isIndoor;
+    public boolean getIndoor() {
+        return indoor;
     }
 
     public void setIndoor(boolean indoor) {
-        isIndoor = indoor;
+        this.indoor = indoor;
     }
 
     @Column(name = "is_guarded")
-    public boolean isGuarded() {
-        return isGuarded;
+    public boolean getGuarded() {
+        return guarded;
     }
 
     public void setGuarded(boolean guarded) {
-        isGuarded = guarded;
+        this.guarded = guarded;
     }
 
     @Column(name = "has_cameras")

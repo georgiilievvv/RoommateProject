@@ -98,8 +98,7 @@ public class Accommodation extends BaseEntity {
 
     @OneToOne(targetEntity = Parking.class)
     @JoinColumn(
-            name = "parking_id", referencedColumnName = "id",
-            nullable = false
+            name = "parking_id", referencedColumnName = "id"
     )
     public Parking getParking() {
         return parking;
@@ -199,7 +198,7 @@ public class Accommodation extends BaseEntity {
         this.moreInfo = moreInfo;
     }
 
-    @Column(name = "has_doorman", nullable = false)
+    @Column(name = "has_doorman")
     public boolean hasDoorman() {
         return hasDoorman;
     }
@@ -208,7 +207,7 @@ public class Accommodation extends BaseEntity {
         this.hasDoorman = hasDoorman;
     }
 
-    @Column(name = "has_elevator", nullable = false)
+    @Column(name = "has_elevator")
     public boolean hasElevator() {
         return hasElevator;
     }
@@ -217,7 +216,7 @@ public class Accommodation extends BaseEntity {
         this.hasElevator = hasElevator;
     }
 
-    @Column(name = "floor", nullable = false)
+    @Column(name = "floor")
     public int getFloor() {
         return floor;
     }
@@ -225,7 +224,6 @@ public class Accommodation extends BaseEntity {
     public void setFloor(int floor) {
         this.floor = floor;
     }
-
 
     @Column(name = "has_yard")
     public boolean hasYard() {

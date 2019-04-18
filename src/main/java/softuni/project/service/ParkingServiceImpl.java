@@ -1,5 +1,7 @@
 package softuni.project.service;
 
+import javassist.NotFoundException;
+import org.hibernate.annotations.NotFound;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,8 +25,17 @@ public class ParkingServiceImpl implements ParkingService {
     }
 
     @Override
+    public ParkingServiceModel findById(String id) {
+        return this.parkingRepository.findById(id).map(p -> modelMapper.map(p, ParkingServiceModel.class))
+                .orElse(null);
+    }
+
+    @Override
     public ParkingServiceModel addParking(ParkingServiceModel parkingServiceModel) {
-       Parking parking = this.parkingRepository
+
+        parkingServiceModel.setId("");
+
+        Parking parking = this.parkingRepository
                .save(modelMapper.map(parkingServiceModel, Parking.class));
 
        return this.modelMapper.map(parking, ParkingServiceModel.class);
