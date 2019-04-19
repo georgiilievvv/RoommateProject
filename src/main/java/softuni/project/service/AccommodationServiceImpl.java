@@ -8,6 +8,7 @@ import softuni.project.domain.entities.AccommodationType;
 import softuni.project.domain.models.service.AccommodationServiceModel;
 import softuni.project.repository.AccommodationRepository;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,6 +32,13 @@ public class AccommodationServiceImpl implements AccommodationService {
         Accommodation accommodation = this.modelMapper.map(accommodationServiceModel, Accommodation.class);
         accommodation.setType(accommodation.getFloor() != 0 ? AccommodationType.House : AccommodationType.Apartment);
         this.accommodationRepository.save(accommodation);
+
+        return this.modelMapper.map(accommodation, AccommodationServiceModel.class);
+    }
+
+    @Override
+    public AccommodationServiceModel findAccommodationById(String id) {
+        Accommodation accommodation = this.accommodationRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Accommodation not found."));
 
         return this.modelMapper.map(accommodation, AccommodationServiceModel.class);
     }

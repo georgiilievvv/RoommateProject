@@ -2,6 +2,7 @@ package softuni.project.domain.models.service;
 
 import softuni.project.domain.entities.Gender;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class UserServiceModel extends BaseServiceModel {
@@ -13,6 +14,9 @@ public class UserServiceModel extends BaseServiceModel {
     private String confirmPassword;
     private String phoneNumber;
     private String imageUrl;
+    private String preferences;
+    private String roommateGender;
+    private String conditions;
     private Integer age;
     private Gender gender;
     private CityServiceModel city;
@@ -21,7 +25,9 @@ public class UserServiceModel extends BaseServiceModel {
     private boolean isCredentialsNonExpired;
     private boolean isEnabled;
     private AccommodationServiceModel accommodation;
+    private Set<AccommodationServiceModel> markedAccommodations;
     private Set<RoleServiceModel> authorities;
+
 
     public Set<RoleServiceModel> getAuthorities() {
         return authorities;
@@ -30,10 +36,6 @@ public class UserServiceModel extends BaseServiceModel {
     public void setAuthorities(Set<RoleServiceModel> authorities) {
         this.authorities = authorities;
     }
-
-    private String preferences;
-    private String roommateGender;
-    private String conditions;
 
     public UserServiceModel() {
     }
@@ -172,6 +174,17 @@ public class UserServiceModel extends BaseServiceModel {
 
     public void setAccommodation(AccommodationServiceModel accommodation) {
         this.accommodation = accommodation;
+    }
+
+    public Set<AccommodationServiceModel> getMarkedAccommodations() {
+        if (markedAccommodations == null){
+            markedAccommodations = new HashSet<>();
+        }
+        return markedAccommodations;
+    }
+
+    public void setMarkedAccommodations(Set<AccommodationServiceModel> markedAccommodations) {
+        this.markedAccommodations = markedAccommodations;
     }
 
     public String getConditions() {

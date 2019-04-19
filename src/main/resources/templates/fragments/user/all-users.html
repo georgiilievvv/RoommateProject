@@ -1,43 +1,41 @@
-<main class="mt-3">
-    <h1 class="text-center text-dark">All Users</h1>
-    <hr class="hr-2 bg-dark w-75">
-    <table class="table table-hover w-75 mx-auto">
-        <thead>
+<h1 class="text-center text-dark">All Users</h1>
+<hr class="hr-2 bg-dark w-75">
+<table class="table table-hover w-75 mx-auto">
+    <thead>
+    <tr class="row mx-auto">
+        <th class="col-md-2 text-center">#</th>
+        <th class="col-md-3 text-center">Username</th>
+        <th class="col-md-2 text-center">Email</th>
+        <th class="col-md-2 text-center">Roles</th>
+        <th class="col-md-3 text-center">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <th:block th:each="user, iter : ${users}">
         <tr class="row mx-auto">
-            <th class="col-md-2 text-center">#</th>
-            <th class="col-md-3 text-center">Username</th>
-            <th class="col-md-2 text-center">Email</th>
-            <th class="col-md-2 text-center">Roles</th>
-            <th class="col-md-3 text-center">Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <th:block th:each="user, iter : ${users}">
-            <tr class="row mx-auto">
-                <th class="col-md-2 text-center" th:text="${iter.index + 1}"></th>
-                <td class="col-md-3 text-center" th:text="${user.username}"></td>
-                <td class="col-md-2 text-center" th:text="${user.email}"></td>
-                <td class="col-md-2 text-center"
-                    th:text="${#strings.replace(#strings.listJoin(user.authorities, ', '), 'ROLE_', '')}"></td>
-                <td class="col-md-3 text-center">
-                    <div class="row d-flex justify-content-center">
-                        <th:block th:if="${!#lists.contains(user.authorities, 'ROLE_ADMIN')}">
-                            <th:block th:if=" ${!#lists.contains(user.authorities, 'ROLE_MODERATOR')}">
-                                <form th:action="@{/moderator/set-moderator/{id}(id=${user.id})}" method="post">
-                                    <button class="btn btn-dark btn-width">MODERATOR</button>
-                                </form>
-                            </th:block>
-                            <th:block th:if="${#lists.contains(user.authorities, 'ROLE_MODERATOR')}">
-                                <form th:action="@{/moderator/set-user/{id}(id=${user.id})}" method="post">
-                                    <button class="btn btn-dark btn-width">USER</button>
-                                </form>
-                            </th:block>
+            <th class="col-md-2 text-center" th:text="${iter.index + 1}"></th>
+            <td class="col-md-3 text-center" th:text="${user.username}"></td>
+            <td class="col-md-2 text-center" th:text="${user.email}"></td>
+            <td class="col-md-2 text-center"
+                th:text="${#strings.replace(#strings.listJoin(user.authorities, ', '), 'ROLE_', '')}"></td>
+            <td class="col-md-3 text-center">
+                <div class="row d-flex justify-content-center">
+                    <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                        <th:block th:if=" ${!#lists.contains(user.authorities, 'ROLE_MODERATOR')}">
+                            <form th:action="@{/moderator/set-moderator/{id}(id=${user.id})}" method="post">
+                                <button class="btn btn-dark btn-width">MODERATOR</button>
+                            </form>
                         </th:block>
+                        <th:block th:if="${#lists.contains(user.authorities, 'ROLE_MODERATOR')}">
+                            <form th:action="@{/moderator/set-user/{id}(id=${user.id})}" method="post">
+                                <button class="btn btn-dark btn-width">USER</button>
+                            </form>
+                        </th:block>
+                    </th:block>
 
-                    </div>
-                </td>
-            </tr>
-        </th:block>
-        </tbody>
-    </table>
-</main>
+                </div>
+            </td>
+        </tr>
+    </th:block>
+    </tbody>
+</table>

@@ -1,5 +1,7 @@
 package softuni.project.domain.models.service;
 
+import softuni.project.domain.entities.AccommodationType;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -9,6 +11,7 @@ public class AccommodationServiceModel extends BaseServiceModel{
     private CityServiceModel city;
     private	String address;
     private	Double quadrature;
+    private AccommodationType type;
     private BigDecimal rentPerMonth;
     private ParkingServiceModel parking;
     private String gender;
@@ -54,6 +57,14 @@ public class AccommodationServiceModel extends BaseServiceModel{
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public AccommodationType getType() {
+        return type;
+    }
+
+    public void setType(AccommodationType type) {
+        this.type = type;
     }
 
     public Double getQuadrature() {

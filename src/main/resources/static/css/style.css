@@ -58,8 +58,12 @@ ul.nav-tabs {
     background-color: rgba(47, 68, 91, 0.99);
 }
 
-.register-modal {
-    padding: 50px;
+.padding {
+    padding: 50px 20px;
+}
+
+.card-body p{
+    margin-bottom: 5px;
 }
 
 .nav-title {

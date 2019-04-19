@@ -25,7 +25,7 @@ public class User extends BaseEntity implements UserDetails {
     private List<User> approvedRoommates;
     private String preferences;
     private List<User> landlordApprovals;
-    private List<Accommodation> markedAccommodations;
+    private Set<Accommodation> markedAccommodations;
 
     public User() {
     }
@@ -163,7 +163,7 @@ public class User extends BaseEntity implements UserDetails {
         this.roommateGender = roommateGender;
     }
 
-    @Column(name = "conditions")
+    @Column(name = "conditions",  columnDefinition = "text")
     public String getConditions() {
         return conditions;
     }
@@ -186,7 +186,7 @@ public class User extends BaseEntity implements UserDetails {
         this.approvedRoommates = approvedRoommates;
     }
 
-    @Column(name = "preferences")
+    @Column(name = "preferences",  columnDefinition = "text")
     public String getPreferences() {
         return preferences;
     }
@@ -206,12 +206,11 @@ public class User extends BaseEntity implements UserDetails {
 
     @OneToMany(targetEntity = Accommodation.class)
     @JoinColumn(name = "apartments_id", referencedColumnName = "id")
-
-    public List<Accommodation> getMarkedAccommodations() {
+    public Set<Accommodation> getMarkedAccommodations() {
         return markedAccommodations;
     }
 
-    public void setMarkedAccommodations(List<Accommodation> markedAccommodations) {
+    public void setMarkedAccommodations(Set<Accommodation> markedAccommodations) {
         this.markedAccommodations = markedAccommodations;
     }
 }

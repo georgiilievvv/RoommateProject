@@ -6,6 +6,10 @@ import java.util.List;
 
 public interface CityService {
 
+    CityServiceModel addCity(CityServiceModel cityServiceModel);
+
+    boolean deleteCity(CityServiceModel cityServiceModel);
+
     void seedCitiesInDb();
 
     List<CityServiceModel> findAllCities();

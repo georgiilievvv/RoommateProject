@@ -59,7 +59,7 @@ public class HomeController {
 
         this.userService.registerUser(userServiceModel);
 
-        modelAndView.setViewName("redirect:/test");
+        modelAndView.setViewName("index");
 
         return modelAndView;
     }

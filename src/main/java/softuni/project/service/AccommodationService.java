@@ -8,6 +8,8 @@ public interface AccommodationService {
 
     AccommodationServiceModel addAccommodation(AccommodationServiceModel accommodationServiceModel);
 
+    AccommodationServiceModel findAccommodationById(String id);
+
     List<AccommodationServiceModel> findAllAccommodations();
 }
 

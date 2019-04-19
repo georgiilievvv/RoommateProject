@@ -14,21 +14,21 @@
     <!--</div>-->
 </a>
 <a class="list-group-item list-group-item-action bg-light" id="edit-profile-tab" href="/edit-profile">Edit Profile</a>
-<th:block sec:authorize="!hasRole('ROLE_ADMIN')">
+<th:block sec:authorize="!hasRole('ROLE_MODERATOR')">
     <a class="list-group-item list-group-item-action bg-light" id="v-pills-users-tab" href="/users">Users</a>
     <a class="list-group-item list-group-item-action bg-light" id="v-pills-accommodations-tab" href="/accommodations">Accommodations</a>
 </th:block>
-<th:block sec:authorize="hasRole('ROLE_GUEST') && !hasRole('ROLE_ADMIN')">
+<th:block sec:authorize="hasRole('ROLE_GUEST') && !hasRole('ROLE_MODERATOR')">
     <a class="list-group-item list-group-item-action bg-light" id="v-pills-landlord-approvals-tab"
        href="/guest/landlord-approvals">Landlord Approvals</a>
     <a class="list-group-item list-group-item-action bg-light" id="v-pills-marked-accommodations-tab"
        href="/guest/marked-accommodations">Marked Accommodations</a>
 </th:block>
-<th:block sec:authorize="hasRole('ROLE_LANDLORD') && !hasRole('ROLE_ADMIN')">
+<th:block sec:authorize="hasRole('ROLE_LANDLORD') && !hasRole('ROLE_MODERATOR')">
     <a class="list-group-item list-group-item-action " id="v-pills-my-home-tab" href="/landlord/my-home">My Home</a>
     <a class="list-group-item list-group-item-action " id="v-pills-approved-roommates-tab" href="/landlord/approved-roommates">Approved Roommates</a>
 </th:block>
-<th:block sec:authorize="hasRole('ROLE_ADMIN')">
+<th:block sec:authorize="hasRole('ROLE_MODERATOR')">
     <a class="list-group-item list-group-item-action bg-light" id="v-pills-moderator-users-tab" href="/moderator/users">Users</a>
     <a class="list-group-item list-group-item-action bg-light" id="v-pills-moderator-accommodations-tab" href="/moderator/accommodations">Accommodations</a>
     <a class="list-group-item list-group-item-action bg-light" id="v-pills-cities-tab" href="/moderator/cities">Cities</a>

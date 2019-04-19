@@ -29,4 +29,7 @@ public class ValidationConstants {
     public static final String INVALID_NUMBER_OF_BATHROOMS = "Number of bathrooms must be between 1 and 5.";
 
     public static final String INVALID_RENT_PER_MONTH = "Rent must be between 1 and 5000.";
+
+    public static final String DUPLICATE_CITY = "City already exists.";
+    public static final String CITY_NAME_TOO_SHORT = "City name must be at least 2 symbols";
 }

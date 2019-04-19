@@ -79,6 +79,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserServiceModel editUserProfile(UserServiceModel userServiceModel) {
+        Set<RoleServiceModel> roles = findUserByUsername(userServiceModel.getUsername())
+                .getAuthorities();
+
+        userServiceModel.setAuthorities(roles);
+
        return saveUserEntity(userServiceModel);
     }
 

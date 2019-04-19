@@ -81,6 +81,8 @@ public class LandlordController {
             return setModelAndView(modelAndView, accommodationAddBindingModel);
         }
         saveAccommodationAndParking(accommodationAddBindingModel);
+        modelAndView.setViewName("redirect:/landlord/my-home");
+
         return modelAndView;
     }
 

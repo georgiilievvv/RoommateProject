@@ -1,0 +1,32 @@
+<h1 class="text-center text-dark">All Cities</h1>
+<br/>
+<div class="row">
+    <div class="col text-center my-1">
+        <a th:href="@{/moderator/add-city}" class="btn btn-dark ">Add City</a>
+    </div>
+</div>
+<hr class="hr-2 bg-dark w-75">
+<table class="table table-hover w-75 mx-auto">
+    <thead>
+    <tr class="row mx-auto">
+        <th class="col-md-2 text-center">#</th>
+        <th class="col-md-5 text-center">Name</th>
+        <th class="col-md-5 text-center">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <th:block th:each="city, iter : ${cities}">
+        <tr class="row mx-auto">
+            <th class="col-md-2 text-center" th:text="${iter.index + 1}"></th>
+            <td class="col-md-5 text-center" th:text="${city.cityName}"></td>
+            <td class="col-md-5 text-center">
+                <form th:action="@{/moderator/delete-city/{id}(id=${city.id})}" method="post">
+                    <a th:href="@{/moderator/edit-city/{id}(id=${city.id})}" class="btn btn-dark">Edit</a>
+                    <button type="submit" th:href="@{/moderator/delete-city/{id}(id=${city.id})}" class="btn btn-dark">Delete</button>
+                </form>
+            </td>
+        </tr>
+    </th:block>
+    </tbody>
+</table>
