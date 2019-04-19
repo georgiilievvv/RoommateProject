@@ -1,5 +1,7 @@
 package softuni.project.domain.models.service;
 
+import softuni.project.domain.entities.Gender;
+
 import java.util.Set;
 
 public class UserServiceModel extends BaseServiceModel {
@@ -12,7 +14,7 @@ public class UserServiceModel extends BaseServiceModel {
     private String phoneNumber;
     private String imageUrl;
     private Integer age;
-    private String gender;
+    private Gender gender;
     private CityServiceModel city;
     private boolean isAccountNonExpired;
     private boolean isAccountNonLocked;
@@ -100,11 +102,11 @@ public class UserServiceModel extends BaseServiceModel {
         this.age = age;
     }
 
-    public String getGender() {
+    public Gender getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 

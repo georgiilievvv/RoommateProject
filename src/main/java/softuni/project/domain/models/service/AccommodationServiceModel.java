@@ -11,6 +11,7 @@ public class AccommodationServiceModel extends BaseServiceModel{
     private	Double quadrature;
     private BigDecimal rentPerMonth;
     private ParkingServiceModel parking;
+    private String gender;
     private	Integer numberOfRooms;
     private	Integer numberOfBathrooms;
     private	boolean hasTV;
@@ -73,6 +74,14 @@ public class AccommodationServiceModel extends BaseServiceModel{
 
     public ParkingServiceModel getParking() {
         return parking;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public void setParking(ParkingServiceModel parking) {

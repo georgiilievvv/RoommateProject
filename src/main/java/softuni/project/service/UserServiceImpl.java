@@ -7,11 +7,13 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import softuni.project.domain.entities.User;
+import softuni.project.domain.models.service.RoleServiceModel;
 import softuni.project.domain.models.service.UserServiceModel;
 import softuni.project.repository.UserRepository;
 
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -93,20 +95,17 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new IllegalArgumentException("Incorrect id!"));
 
         UserServiceModel userServiceModel = this.modelMapper.map(user, UserServiceModel.class);
-        userServiceModel.getAuthorities().clear();
 
         switch (role) {
             case "user":
-                userServiceModel.getAuthorities().add(this.roleService.findByAuthority("ROLE_USER"));
+                Set<RoleServiceModel> roles = userServiceModel.getAuthorities()
+                        .stream().filter(r -> !r.getAuthority().equals("ROLE_MODERATOR"))
+                        .collect(Collectors.toSet());
+
+                userServiceModel.setAuthorities(roles);
                 break;
             case "moderator":
-                userServiceModel.getAuthorities().add(this.roleService.findByAuthority("ROLE_USER"));
                 userServiceModel.getAuthorities().add(this.roleService.findByAuthority("ROLE_MODERATOR"));
-                break;
-            case "admin":
-                userServiceModel.getAuthorities().add(this.roleService.findByAuthority("ROLE_USER"));
-                userServiceModel.getAuthorities().add(this.roleService.findByAuthority("ROLE_MODERATOR"));
-                userServiceModel.getAuthorities().add(this.roleService.findByAuthority("ROLE_ADMIN"));
                 break;
         }
 
